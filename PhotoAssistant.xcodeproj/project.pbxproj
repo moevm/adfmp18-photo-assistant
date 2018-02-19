@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		B75C710F203ACAD800A97B3D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B75C710E203ACAD800A97B3D /* AppDelegate.swift */; };
-		B75C7111203ACAD800A97B3D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B75C7110203ACAD800A97B3D /* ViewController.swift */; };
+		B75C7111203ACAD800A97B3D /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B75C7110203ACAD800A97B3D /* RootViewController.swift */; };
 		B75C7114203ACAD800A97B3D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B75C7112203ACAD800A97B3D /* Main.storyboard */; };
 		B75C7116203ACAD800A97B3D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B75C7115203ACAD800A97B3D /* Assets.xcassets */; };
 		B75C7119203ACAD800A97B3D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B75C7117203ACAD800A97B3D /* LaunchScreen.storyboard */; };
@@ -17,7 +17,7 @@
 /* Begin PBXFileReference section */
 		B75C710B203ACAD800A97B3D /* PhotoAssistant.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PhotoAssistant.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B75C710E203ACAD800A97B3D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		B75C7110203ACAD800A97B3D /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		B75C7110203ACAD800A97B3D /* RootViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
 		B75C7113203ACAD800A97B3D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		B75C7115203ACAD800A97B3D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B75C7118203ACAD800A97B3D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -54,14 +54,62 @@
 		B75C710D203ACAD800A97B3D /* PhotoAssistant */ = {
 			isa = PBXGroup;
 			children = (
-				B75C710E203ACAD800A97B3D /* AppDelegate.swift */,
-				B75C7110203ACAD800A97B3D /* ViewController.swift */,
-				B75C7112203ACAD800A97B3D /* Main.storyboard */,
-				B75C7115203ACAD800A97B3D /* Assets.xcassets */,
-				B75C7117203ACAD800A97B3D /* LaunchScreen.storyboard */,
-				B75C711A203ACAD800A97B3D /* Info.plist */,
+				B75C7120203ACDA900A97B3D /* Application Delegate */,
+				B75C7121203ACDC800A97B3D /* View Controllers */,
+				B75C7123203ACDE400A97B3D /* Storyboards */,
+				B75C7124203ACDEE00A97B3D /* Reources */,
+				B75C7125203ACDF500A97B3D /* Configuration */,
 			);
 			path = PhotoAssistant;
+			sourceTree = "<group>";
+		};
+		B75C7120203ACDA900A97B3D /* Application Delegate */ = {
+			isa = PBXGroup;
+			children = (
+				B75C710E203ACAD800A97B3D /* AppDelegate.swift */,
+			);
+			path = "Application Delegate";
+			sourceTree = "<group>";
+		};
+		B75C7121203ACDC800A97B3D /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				B75C7122203ACDD000A97B3D /* RootViewController */,
+			);
+			path = "View Controllers";
+			sourceTree = "<group>";
+		};
+		B75C7122203ACDD000A97B3D /* RootViewController */ = {
+			isa = PBXGroup;
+			children = (
+				B75C7110203ACAD800A97B3D /* RootViewController.swift */,
+			);
+			path = RootViewController;
+			sourceTree = "<group>";
+		};
+		B75C7123203ACDE400A97B3D /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				B75C7112203ACAD800A97B3D /* Main.storyboard */,
+				B75C7117203ACAD800A97B3D /* LaunchScreen.storyboard */,
+			);
+			path = Storyboards;
+			sourceTree = "<group>";
+		};
+		B75C7124203ACDEE00A97B3D /* Reources */ = {
+			isa = PBXGroup;
+			children = (
+				B75C7115203ACAD800A97B3D /* Assets.xcassets */,
+			);
+			path = Reources;
+			sourceTree = "<group>";
+		};
+		B75C7125203ACDF500A97B3D /* Configuration */ = {
+			isa = PBXGroup;
+			children = (
+				B75C711A203ACAD800A97B3D /* Info.plist */,
+			);
+			path = Configuration;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -136,7 +184,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B75C7111203ACAD800A97B3D /* ViewController.swift in Sources */,
+				B75C7111203ACAD800A97B3D /* RootViewController.swift in Sources */,
 				B75C710F203ACAD800A97B3D /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -276,7 +324,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 9YH3LZQ69V;
-				INFOPLIST_FILE = PhotoAssistant/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/PhotoAssistant/Configuration/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.arturazarau.PhotoAssistant;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -291,7 +339,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 9YH3LZQ69V;
-				INFOPLIST_FILE = PhotoAssistant/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/PhotoAssistant/Configuration/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.arturazarau.PhotoAssistant;
 				PRODUCT_NAME = "$(TARGET_NAME)";
