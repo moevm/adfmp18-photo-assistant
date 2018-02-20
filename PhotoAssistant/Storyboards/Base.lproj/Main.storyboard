@@ -6,6 +6,8 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -17,7 +19,33 @@
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DjV-QM-bpy" userLabel="Capture Preview View">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dlb-jH-fmr">
+                                        <rect key="frame" x="156" y="595" width="62.5" height="62"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="Dlb-jH-fmr" secondAttribute="height" multiplier="1:1" id="Sxl-92-ihG"/>
+                                        </constraints>
+                                        <state key="normal" title="Button"/>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="Dlb-jH-fmr" firstAttribute="centerX" secondItem="DjV-QM-bpy" secondAttribute="centerX" id="4g3-V3-iyA"/>
+                                    <constraint firstAttribute="bottom" secondItem="Dlb-jH-fmr" secondAttribute="bottom" constant="10" id="ZPE-NT-s9u"/>
+                                    <constraint firstItem="Dlb-jH-fmr" firstAttribute="width" secondItem="DjV-QM-bpy" secondAttribute="width" multiplier="1/6" id="i1C-ii-sYa"/>
+                                </constraints>
+                            </view>
+                        </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="DjV-QM-bpy" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="QNk-1G-0R3"/>
+                            <constraint firstItem="DjV-QM-bpy" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="i0O-7n-GJ4"/>
+                            <constraint firstItem="DjV-QM-bpy" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="jqN-BR-qFE"/>
+                            <constraint firstItem="DjV-QM-bpy" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="pay-SQ-daN"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                 </viewController>

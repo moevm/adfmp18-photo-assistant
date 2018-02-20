@@ -12,6 +12,7 @@
 		B75C7114203ACAD800A97B3D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B75C7112203ACAD800A97B3D /* Main.storyboard */; };
 		B75C7116203ACAD800A97B3D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B75C7115203ACAD800A97B3D /* Assets.xcassets */; };
 		B75C7119203ACAD800A97B3D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B75C7117203ACAD800A97B3D /* LaunchScreen.storyboard */; };
+		B75C7129203C6FAB00A97B3D /* CameraController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B75C7128203C6FAB00A97B3D /* CameraController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +23,7 @@
 		B75C7115203ACAD800A97B3D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B75C7118203ACAD800A97B3D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B75C711A203ACAD800A97B3D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B75C7128203C6FAB00A97B3D /* CameraController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,7 +57,7 @@
 			isa = PBXGroup;
 			children = (
 				B75C7120203ACDA900A97B3D /* Application Delegate */,
-				B75C7121203ACDC800A97B3D /* View Controllers */,
+				B75C7121203ACDC800A97B3D /* Controllers */,
 				B75C7123203ACDE400A97B3D /* Storyboards */,
 				B75C7124203ACDEE00A97B3D /* Reources */,
 				B75C7125203ACDF500A97B3D /* Configuration */,
@@ -71,18 +73,19 @@
 			path = "Application Delegate";
 			sourceTree = "<group>";
 		};
-		B75C7121203ACDC800A97B3D /* View Controllers */ = {
+		B75C7121203ACDC800A97B3D /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
 				B75C7122203ACDD000A97B3D /* RootViewController */,
 			);
-			path = "View Controllers";
+			path = Controllers;
 			sourceTree = "<group>";
 		};
 		B75C7122203ACDD000A97B3D /* RootViewController */ = {
 			isa = PBXGroup;
 			children = (
 				B75C7110203ACAD800A97B3D /* RootViewController.swift */,
+				B75C7128203C6FAB00A97B3D /* CameraController.swift */,
 			);
 			path = RootViewController;
 			sourceTree = "<group>";
@@ -184,6 +187,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B75C7129203C6FAB00A97B3D /* CameraController.swift in Sources */,
 				B75C7111203ACAD800A97B3D /* RootViewController.swift in Sources */,
 				B75C710F203ACAD800A97B3D /* AppDelegate.swift in Sources */,
 			);
