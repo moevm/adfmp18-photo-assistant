@@ -7,6 +7,7 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -23,19 +24,54 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DjV-QM-bpy" userLabel="Capture Preview View">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dlb-jH-fmr">
-                                        <rect key="frame" x="156" y="595" width="62.5" height="62"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dlb-jH-fmr" userLabel="Take Photo Button">
+                                        <rect key="frame" x="150" y="592" width="75" height="75"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="Dlb-jH-fmr" secondAttribute="height" multiplier="1:1" id="Sxl-92-ihG"/>
                                         </constraints>
-                                        <state key="normal" title="Button"/>
+                                        <state key="normal" image="Roundcam"/>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="y55-0X-TjK" userLabel="Filters Button">
+                                        <rect key="frame" x="8" y="599.5" width="60" height="60"/>
+                                        <state key="normal" image="Effects"/>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KNw-9g-BdD" userLabel="Camera Switch Button">
+                                        <rect key="frame" x="329.5" y="10" width="37.5" height="37.5"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="KNw-9g-BdD" secondAttribute="height" multiplier="1:1" id="Nbb-Sh-BSP"/>
+                                        </constraints>
+                                        <state key="normal" image="Digitalcamback"/>
+                                    </button>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="TestImage" translatesAutoresizingMaskIntoConstraints="NO" id="Eac-PA-pf7" userLabel="Taken Picture Image View">
+                                        <rect key="frame" x="307" y="599.5" width="60" height="60"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="Eac-PA-pf7" secondAttribute="height" multiplier="1:1" id="rla-WV-TE6"/>
+                                        </constraints>
+                                    </imageView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="u7j-fC-Xtd" userLabel="Flashlight Switch Button">
+                                        <rect key="frame" x="329.5" y="55.5" width="37.5" height="37.5"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="u7j-fC-Xtd" secondAttribute="height" multiplier="1:1" id="KP0-Cu-Nza"/>
+                                        </constraints>
+                                        <state key="normal" image="Noflash"/>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
+                                    <constraint firstItem="Dlb-jH-fmr" firstAttribute="centerY" secondItem="y55-0X-TjK" secondAttribute="centerY" id="11Q-Yh-Ek4"/>
                                     <constraint firstItem="Dlb-jH-fmr" firstAttribute="centerX" secondItem="DjV-QM-bpy" secondAttribute="centerX" id="4g3-V3-iyA"/>
-                                    <constraint firstAttribute="bottom" secondItem="Dlb-jH-fmr" secondAttribute="bottom" constant="10" id="ZPE-NT-s9u"/>
-                                    <constraint firstItem="Dlb-jH-fmr" firstAttribute="width" secondItem="DjV-QM-bpy" secondAttribute="width" multiplier="1/6" id="i1C-ii-sYa"/>
+                                    <constraint firstItem="KNw-9g-BdD" firstAttribute="width" secondItem="DjV-QM-bpy" secondAttribute="width" multiplier="0.1" id="4iO-PJ-xv6"/>
+                                    <constraint firstItem="u7j-fC-Xtd" firstAttribute="centerX" secondItem="KNw-9g-BdD" secondAttribute="centerX" id="6Gn-eb-xea"/>
+                                    <constraint firstItem="u7j-fC-Xtd" firstAttribute="width" secondItem="KNw-9g-BdD" secondAttribute="width" id="UqO-hG-fvR"/>
+                                    <constraint firstItem="y55-0X-TjK" firstAttribute="leading" secondItem="DjV-QM-bpy" secondAttribute="leadingMargin" id="Y1E-LD-IbD"/>
+                                    <constraint firstAttribute="bottom" secondItem="Dlb-jH-fmr" secondAttribute="bottom" id="ZPE-NT-s9u"/>
+                                    <constraint firstItem="Eac-PA-pf7" firstAttribute="centerY" secondItem="Dlb-jH-fmr" secondAttribute="centerY" id="cp7-4q-jmp"/>
+                                    <constraint firstItem="Eac-PA-pf7" firstAttribute="trailing" secondItem="DjV-QM-bpy" secondAttribute="trailingMargin" id="dx6-8X-wY7"/>
+                                    <constraint firstItem="Dlb-jH-fmr" firstAttribute="width" secondItem="DjV-QM-bpy" secondAttribute="width" multiplier="1/5" id="mEV-8s-h5n"/>
+                                    <constraint firstItem="KNw-9g-BdD" firstAttribute="top" secondItem="DjV-QM-bpy" secondAttribute="top" constant="10" id="ng9-dD-lYF"/>
+                                    <constraint firstItem="u7j-fC-Xtd" firstAttribute="top" secondItem="KNw-9g-BdD" secondAttribute="bottom" constant="8" id="njt-bg-KVn"/>
+                                    <constraint firstItem="Eac-PA-pf7" firstAttribute="width" secondItem="Dlb-jH-fmr" secondAttribute="width" multiplier="0.8" id="r3a-Ws-Zth"/>
+                                    <constraint firstAttribute="trailing" secondItem="KNw-9g-BdD" secondAttribute="trailing" constant="8" id="wI4-b2-fSh"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -51,7 +87,14 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="136.80000000000001" y="122.78860569715144"/>
+            <point key="canvasLocation" x="49" y="88"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="Digitalcamback" width="60" height="60"/>
+        <image name="Effects" width="60" height="60"/>
+        <image name="Noflash" width="60" height="60"/>
+        <image name="Roundcam" width="60" height="60"/>
+        <image name="TestImage" width="84" height="78"/>
+    </resources>
 </document>
