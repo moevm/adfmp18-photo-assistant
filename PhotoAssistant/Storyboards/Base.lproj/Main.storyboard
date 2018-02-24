@@ -102,6 +102,7 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
+                        <outlet property="capturePreviewView" destination="DjV-QM-bpy" id="7zt-xd-aCc"/>
                         <outlet property="swicthCamerasButton" destination="KNw-9g-BdD" id="gc7-yX-Dot"/>
                         <outlet property="switchFlashlightButton" destination="u7j-fC-Xtd" id="wVi-3D-jic"/>
                     </connections>

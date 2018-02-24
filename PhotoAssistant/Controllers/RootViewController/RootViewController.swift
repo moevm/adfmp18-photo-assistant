@@ -12,10 +12,14 @@ final class RootController: UIViewController {
     
     // MARK: - Properties
     
+    fileprivate let cameraController = CameraController()
+    override var prefersStatusBarHidden: Bool { return true }
+    
     // MARK: - Outlets
     
     @IBOutlet weak var swicthCamerasButton: UIButton!
     @IBOutlet weak var switchFlashlightButton: UIButton!
+    @IBOutlet weak var capturePreviewView: UIView!
     
     // MARK: - Actions
     
@@ -46,3 +50,23 @@ final class RootController: UIViewController {
     }
 }
 
+// MARK: - Life cycle
+
+extension RootController {
+    override func viewDidLoad() {
+        
+        func configureCameraController() {
+            cameraController.prepare { (error) in
+                if let error = error {
+                    // TODO: Implement error hadnling
+                    print(error)
+                }
+                
+                try? self.cameraController.displayPreview(on: self.capturePreviewView)
+            }
+        }
+        
+        super.viewDidLoad()
+        configureCameraController()
+    }
+}

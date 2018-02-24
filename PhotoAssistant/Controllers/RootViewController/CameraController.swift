@@ -6,11 +6,12 @@
 //  Copyright © 2018 Артур Азаров. All rights reserved.
 //
 
+import UIKit
 import AVFoundation
 
 final class CameraController {
     // capture session
-    fileprivate(set) var captureSession: AVCaptureSession?
+    fileprivate var captureSession: AVCaptureSession?
     
     // cameras
     fileprivate var frontCamera: AVCaptureDevice?
@@ -23,6 +24,9 @@ final class CameraController {
     
     // output
     fileprivate var photoOutput: AVCapturePhotoOutput?
+    
+    // preview
+    fileprivate var previewLayer: AVCaptureVideoPreviewLayer?
 }
 
 // MARK: - Methods
@@ -122,9 +126,23 @@ extension CameraController {
             }
         }
     }
+
+    func displayPreview(on view: UIView) throws {
+        guard let captureSession = self.captureSession, captureSession.isRunning else {
+            throw CameraControllerError.captureSessionIsMissing
+        }
+        
+        self.previewLayer = AVCaptureVideoPreviewLayer(session: captureSession)
+        self.previewLayer?.videoGravity = AVLayerVideoGravity.resizeAspectFill
+        self.previewLayer?.connection?.videoOrientation = .portrait
+        
+        view.layer.insertSublayer(self.previewLayer!, at: 0)
+        self.previewLayer?.frame = view.bounds
+    }
 }
 
 extension CameraController {
+    // TODO: Implement conformation to LocalizedError
     enum CameraControllerError: Error {
         case captureSessionAlreadyRunning
         case captureSessionIsMissing
