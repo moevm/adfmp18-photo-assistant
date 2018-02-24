@@ -29,6 +29,13 @@ final class RootController: UIViewController {
     // MARK: -
     
     @IBAction func switchFlashlight(_ sender: UIButton) {
+        if cameraController.flashMode == .on {
+            cameraController.flashMode = .off
+            switchFlashlightButton.setImage(#imageLiteral(resourceName: "Noflash"), for: .normal)
+        } else {
+            cameraController.flashMode = .on
+            switchFlashlightButton.setImage(#imageLiteral(resourceName: "Flashcircled"), for: .normal)
+        }
     }
     
     // MARK: -

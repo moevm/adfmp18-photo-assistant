@@ -27,6 +27,8 @@ final class CameraController {
     
     // preview
     fileprivate var previewLayer: AVCaptureVideoPreviewLayer?
+    
+    var flashMode = AVCaptureDevice.FlashMode.off
 }
 
 // MARK: - Methods
