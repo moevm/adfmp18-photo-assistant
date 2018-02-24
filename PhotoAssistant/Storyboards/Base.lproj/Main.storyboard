@@ -24,16 +24,12 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DjV-QM-bpy" userLabel="Capture Preview View">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dlb-jH-fmr" userLabel="Take Photo Button">
-                                        <rect key="frame" x="150" y="592" width="75" height="75"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" secondItem="Dlb-jH-fmr" secondAttribute="height" multiplier="1:1" id="Sxl-92-ihG"/>
-                                        </constraints>
-                                        <state key="normal" image="Roundcam"/>
-                                    </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="y55-0X-TjK" userLabel="Filters Button">
                                         <rect key="frame" x="8" y="599.5" width="60" height="60"/>
                                         <state key="normal" image="Effects"/>
+                                        <connections>
+                                            <action selector="chooseFilter:" destination="BYZ-38-t0r" eventType="touchUpInside" id="eJs-sz-U4v"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KNw-9g-BdD" userLabel="Camera Switch Button">
                                         <rect key="frame" x="329.5" y="10" width="37.5" height="37.5"/>
@@ -41,19 +37,39 @@
                                             <constraint firstAttribute="width" secondItem="KNw-9g-BdD" secondAttribute="height" multiplier="1:1" id="Nbb-Sh-BSP"/>
                                         </constraints>
                                         <state key="normal" image="Digitalcamback"/>
+                                        <connections>
+                                            <action selector="switchCameras:" destination="BYZ-38-t0r" eventType="touchUpInside" id="2q7-of-vZY"/>
+                                        </connections>
                                     </button>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="TestImage" translatesAutoresizingMaskIntoConstraints="NO" id="Eac-PA-pf7" userLabel="Taken Picture Image View">
-                                        <rect key="frame" x="307" y="599.5" width="60" height="60"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" secondItem="Eac-PA-pf7" secondAttribute="height" multiplier="1:1" id="rla-WV-TE6"/>
-                                        </constraints>
-                                    </imageView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="u7j-fC-Xtd" userLabel="Flashlight Switch Button">
                                         <rect key="frame" x="329.5" y="55.5" width="37.5" height="37.5"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="u7j-fC-Xtd" secondAttribute="height" multiplier="1:1" id="KP0-Cu-Nza"/>
                                         </constraints>
                                         <state key="normal" image="Noflash"/>
+                                        <connections>
+                                            <action selector="switchFlashlight:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ZZB-DY-fxO"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="i1v-1z-Lqu">
+                                        <rect key="frame" x="296" y="599" width="60" height="60"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="i1v-1z-Lqu" secondAttribute="height" multiplier="1:1" id="NRt-Vc-rYP"/>
+                                        </constraints>
+                                        <state key="normal" image="TestImage"/>
+                                        <connections>
+                                            <action selector="viewTakenImage:" destination="BYZ-38-t0r" eventType="touchUpInside" id="RjA-dN-srZ"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dlb-jH-fmr" userLabel="Take Photo Button">
+                                        <rect key="frame" x="150.5" y="592" width="75" height="75"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="Dlb-jH-fmr" secondAttribute="height" multiplier="1:1" id="Sxl-92-ihG"/>
+                                        </constraints>
+                                        <state key="normal" image="Roundcam"/>
+                                        <connections>
+                                            <action selector="takePhoto:" destination="BYZ-38-t0r" eventType="touchUpInside" id="7Dh-La-gUQ"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -62,20 +78,21 @@
                                     <constraint firstItem="Dlb-jH-fmr" firstAttribute="centerX" secondItem="DjV-QM-bpy" secondAttribute="centerX" id="4g3-V3-iyA"/>
                                     <constraint firstItem="KNw-9g-BdD" firstAttribute="width" secondItem="DjV-QM-bpy" secondAttribute="width" multiplier="0.1" id="4iO-PJ-xv6"/>
                                     <constraint firstItem="u7j-fC-Xtd" firstAttribute="centerX" secondItem="KNw-9g-BdD" secondAttribute="centerX" id="6Gn-eb-xea"/>
+                                    <constraint firstItem="i1v-1z-Lqu" firstAttribute="centerY" secondItem="Dlb-jH-fmr" secondAttribute="centerY" id="7T2-V8-qHK"/>
                                     <constraint firstItem="u7j-fC-Xtd" firstAttribute="width" secondItem="KNw-9g-BdD" secondAttribute="width" id="UqO-hG-fvR"/>
                                     <constraint firstItem="y55-0X-TjK" firstAttribute="leading" secondItem="DjV-QM-bpy" secondAttribute="leadingMargin" id="Y1E-LD-IbD"/>
                                     <constraint firstAttribute="bottom" secondItem="Dlb-jH-fmr" secondAttribute="bottom" id="ZPE-NT-s9u"/>
-                                    <constraint firstItem="Eac-PA-pf7" firstAttribute="centerY" secondItem="Dlb-jH-fmr" secondAttribute="centerY" id="cp7-4q-jmp"/>
-                                    <constraint firstItem="Eac-PA-pf7" firstAttribute="trailing" secondItem="DjV-QM-bpy" secondAttribute="trailingMargin" id="dx6-8X-wY7"/>
+                                    <constraint firstAttribute="trailing" secondItem="i1v-1z-Lqu" secondAttribute="trailing" constant="19" id="jOF-FW-Z1e"/>
                                     <constraint firstItem="Dlb-jH-fmr" firstAttribute="width" secondItem="DjV-QM-bpy" secondAttribute="width" multiplier="1/5" id="mEV-8s-h5n"/>
                                     <constraint firstItem="KNw-9g-BdD" firstAttribute="top" secondItem="DjV-QM-bpy" secondAttribute="top" constant="10" id="ng9-dD-lYF"/>
                                     <constraint firstItem="u7j-fC-Xtd" firstAttribute="top" secondItem="KNw-9g-BdD" secondAttribute="bottom" constant="8" id="njt-bg-KVn"/>
-                                    <constraint firstItem="Eac-PA-pf7" firstAttribute="width" secondItem="Dlb-jH-fmr" secondAttribute="width" multiplier="0.8" id="r3a-Ws-Zth"/>
+                                    <constraint firstItem="i1v-1z-Lqu" firstAttribute="width" secondItem="Dlb-jH-fmr" secondAttribute="width" multiplier="0.8" id="q2z-2d-99M"/>
                                     <constraint firstAttribute="trailing" secondItem="KNw-9g-BdD" secondAttribute="trailing" constant="8" id="wI4-b2-fSh"/>
                                 </constraints>
                             </view>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="DjV-QM-bpy" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="QNk-1G-0R3"/>
                             <constraint firstItem="DjV-QM-bpy" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="i0O-7n-GJ4"/>
@@ -84,6 +101,10 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
+                    <connections>
+                        <outlet property="swicthCamerasButton" destination="KNw-9g-BdD" id="gc7-yX-Dot"/>
+                        <outlet property="switchFlashlightButton" destination="u7j-fC-Xtd" id="wVi-3D-jic"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
