@@ -205,15 +205,14 @@ extension CameraController {
     }
 }
 
-extension CameraController: AVCapturePhotoCaptureDelegate {
-    func photoOutput(_ output: AVCapturePhotoOutput, didFinishProcessingPhoto photoSampleBuffer: CMSampleBuffer?, previewPhoto previewPhotoSampleBuffer: CMSampleBuffer?, resolvedSettings: AVCaptureResolvedPhotoSettings, bracketSettings: AVCaptureBracketedStillImageSettings?, error: Error?) {
+extension CameraController: AVCapturePhotoCaptureDelegate {    
+    func photoOutput(_ output: AVCapturePhotoOutput, didFinishProcessingPhoto photo: AVCapturePhoto, error: Error?) {
         if let error = error { self.photoCaptureCompletionBlock?(nil, error) }
-        else if let buffer = photoSampleBuffer, let data = AVCapturePhotoOutput.jpegPhotoDataRepresentation(forJPEGSampleBuffer: buffer, previewPhotoSampleBuffer: nil),
-            let image = UIImage(data: data) {
-            
+        else if let data = photo.fileDataRepresentation() {
+            let image = UIImage(data: data)
             self.photoCaptureCompletionBlock?(image, nil)
         }
-            
+        
         else {
             self.photoCaptureCompletionBlock?(nil, CameraControllerError.unknown)
         }
