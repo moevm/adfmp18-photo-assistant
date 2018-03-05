@@ -103,8 +103,11 @@
                     </view>
                     <connections>
                         <outlet property="capturePreviewView" destination="DjV-QM-bpy" id="7zt-xd-aCc"/>
-                        <outlet property="swicthCamerasButton" destination="KNw-9g-BdD" id="gc7-yX-Dot"/>
+                        <outlet property="chooseFilterButton" destination="y55-0X-TjK" id="a7Z-XZ-hj9"/>
+                        <outlet property="switchCamerasButton" destination="KNw-9g-BdD" id="gc7-yX-Dot"/>
                         <outlet property="switchFlashlightButton" destination="u7j-fC-Xtd" id="wVi-3D-jic"/>
+                        <outlet property="takePhotoButton" destination="Dlb-jH-fmr" id="SVY-IM-n7a"/>
+                        <outlet property="takenImageButton" destination="i1v-1z-Lqu" id="OYL-So-0ee"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

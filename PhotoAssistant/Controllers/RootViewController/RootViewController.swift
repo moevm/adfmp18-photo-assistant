@@ -25,7 +25,7 @@ final class RootController: UIViewController {
     
     // MARK: - Outlets
     
-    @IBOutlet weak var swicthCamerasButton: UIButton!
+    @IBOutlet weak var switchCamerasButton: UIButton!
     @IBOutlet weak var switchFlashlightButton: UIButton!
     @IBOutlet weak var capturePreviewView: UIView!
     @IBOutlet weak var chooseFilterButton: UIButton!
@@ -36,6 +36,18 @@ final class RootController: UIViewController {
     @IBOutlet weak var takenImageButton: UIButton!
     
     @IBAction func switchCameras(_ sender: UIButton) {
+        do {
+            try cameraController.switchCameras()
+        } catch {
+            // TODO: - Implement error handling
+            print(error)
+        }
+        
+        switch cameraController.currentCameraPosition {
+        case .some(.front): switchCamerasButton.setImage(#imageLiteral(resourceName: "Digitalcam"), for: .normal)
+        case .some(.rear): switchCamerasButton.setImage(#imageLiteral(resourceName: "Digitalcamback"), for: .normal)
+        case .none: return
+        }
     }
     
     // MARK: -
@@ -114,7 +126,7 @@ extension RootController {
         }
         
         UIView.animate(withDuration: 0.3) {
-            self.swicthCamerasButton.transform = CGAffineTransform(rotationAngle: angle)
+            self.switchCamerasButton.transform = CGAffineTransform(rotationAngle: angle)
             self.switchFlashlightButton.transform = CGAffineTransform(rotationAngle: angle)
             self.chooseFilterButton.transform = CGAffineTransform(rotationAngle: angle)
             self.takePhotoButton.transform = CGAffineTransform(rotationAngle: angle)
