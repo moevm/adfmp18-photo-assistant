@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Photos
 
 final class RootController: UIViewController {
     
@@ -72,7 +73,18 @@ final class RootController: UIViewController {
     // MARK: -
     
     @IBAction func takePhoto(_ sender: UIButton) {
-        //TODO: Implement taking a photo
+        cameraController.captureImage {(image, error) in
+            guard let image = image else {
+                print(error ?? "Image capture error")
+                return
+            }
+            DispatchQueue.main.async {
+                self.takenImageButton.setImage(image, for: .normal)
+            }
+            try? PHPhotoLibrary.shared().performChangesAndWait {
+                PHAssetChangeRequest.creationRequestForAsset(from: image)
+            }
+        }
     }
     
     // MARK: -
@@ -106,6 +118,7 @@ extension RootController {
         super.viewDidLoad()
         configureCameraController()
         updateOrientation()
+        setUI()
     }
 }
 
@@ -132,5 +145,9 @@ extension RootController {
             self.takePhotoButton.transform = CGAffineTransform(rotationAngle: angle)
             self.takenImageButton.transform = CGAffineTransform(rotationAngle: angle)
         }
+    }
+    
+    fileprivate func setUI() {
+        takenImageButton.layer.cornerRadius = takenImageButton.bounds.height / 2
     }
 }

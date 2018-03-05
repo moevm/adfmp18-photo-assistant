@@ -9,7 +9,7 @@
 import UIKit
 import AVFoundation
 
-final class CameraController {
+final class CameraController: NSObject {
     // capture session
     fileprivate var captureSession: AVCaptureSession?
     
@@ -28,7 +28,10 @@ final class CameraController {
     // preview
     fileprivate var previewLayer: AVCaptureVideoPreviewLayer?
     
+    // properties
+    
     var flashMode = AVCaptureDevice.FlashMode.off
+    fileprivate var photoCaptureCompletionBlock: ((UIImage?, Error?) -> Void)?
 }
 
 // MARK: - Methods
@@ -187,6 +190,33 @@ extension CameraController {
         case .rear: try switchToFrontCamera()
         }
         
+    }
+
+    func captureImage(completion: @escaping (UIImage?, Error?) -> Void) {
+        guard let captureSession = captureSession, captureSession.isRunning else {
+            completion(nil, CameraControllerError.captureSessionIsMissing)
+            return
+        }
+        let settings = AVCapturePhotoSettings()
+        settings.flashMode = self.flashMode
+        
+        self.photoOutput?.capturePhoto(with: settings, delegate: self)
+        self.photoCaptureCompletionBlock = completion
+    }
+}
+
+extension CameraController: AVCapturePhotoCaptureDelegate {
+    func photoOutput(_ output: AVCapturePhotoOutput, didFinishProcessingPhoto photoSampleBuffer: CMSampleBuffer?, previewPhoto previewPhotoSampleBuffer: CMSampleBuffer?, resolvedSettings: AVCaptureResolvedPhotoSettings, bracketSettings: AVCaptureBracketedStillImageSettings?, error: Error?) {
+        if let error = error { self.photoCaptureCompletionBlock?(nil, error) }
+        else if let buffer = photoSampleBuffer, let data = AVCapturePhotoOutput.jpegPhotoDataRepresentation(forJPEGSampleBuffer: buffer, previewPhotoSampleBuffer: nil),
+            let image = UIImage(data: data) {
+            
+            self.photoCaptureCompletionBlock?(image, nil)
+        }
+            
+        else {
+            self.photoCaptureCompletionBlock?(nil, CameraControllerError.unknown)
+        }
     }
 }
 
