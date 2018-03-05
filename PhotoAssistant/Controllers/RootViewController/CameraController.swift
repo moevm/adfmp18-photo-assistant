@@ -137,7 +137,6 @@ extension CameraController {
         self.previewLayer = AVCaptureVideoPreviewLayer(session: captureSession)
         self.previewLayer?.videoGravity = AVLayerVideoGravity.resizeAspectFill
         self.previewLayer?.connection?.videoOrientation = .portrait
-        
         view.layer.insertSublayer(self.previewLayer!, at: 0)
         self.previewLayer?.frame = view.bounds
     }
