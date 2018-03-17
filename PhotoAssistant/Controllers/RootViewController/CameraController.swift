@@ -220,7 +220,7 @@ extension CameraController: AVCapturePhotoCaptureDelegate {
 }
 
 extension CameraController {
-    // TODO: Implement conformation to LocalizedError
+    // TODO: Implement conformance to LocalizedError
     enum CameraControllerError: Error {
         case captureSessionAlreadyRunning
         case captureSessionIsMissing

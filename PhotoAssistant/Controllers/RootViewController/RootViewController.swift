@@ -14,6 +14,10 @@ final class RootController: UIViewController {
     // MARK: - Properties
     
     fileprivate let cameraController = CameraController()
+    let filtersCollectionViewContoller = FiltersCollectionViewController()
+    
+    // MARK: - Proprties' overrides
+    
     override var prefersStatusBarHidden: Bool { return true }
     
     override var shouldAutorotate: Bool {
@@ -35,6 +39,7 @@ final class RootController: UIViewController {
     
     // MARK: - Actions
     @IBOutlet weak var takenImageButton: UIButton!
+    @IBOutlet var filtersCollectionView: FiltersCollectionVIew!
     
     @IBAction func switchCameras(_ sender: UIButton) {
         do {
@@ -65,9 +70,8 @@ final class RootController: UIViewController {
     
     // MARK: -
     
-    
     @IBAction func chooseFilter(_ sender: UIButton) {
-        //TODO: Implement choosing filters
+        showAndHideFilters()
     }
     
     // MARK: -
@@ -119,6 +123,10 @@ extension RootController {
         configureCameraController()
         updateOrientation()
         setUI()
+        filtersCollectionView.register(FilterCell.self, forCellWithReuseIdentifier: "FilterCell")
+        filtersCollectionView.dataSource = filtersCollectionViewContoller
+        filtersCollectionView.delegate = filtersCollectionViewContoller
+        filtersCollectionView.reloadData()
     }
 }
 
@@ -149,5 +157,16 @@ extension RootController {
     
     fileprivate func setUI() {
         takenImageButton.layer.cornerRadius = takenImageButton.bounds.height / 2
+    }
+    
+    private func showAndHideFilters() {
+        UIView.animate(withDuration: 0.2) { [weak self] in
+            if let weakSelf = self {
+                weakSelf.filtersCollectionView.isHidden = !weakSelf.filtersCollectionView.isHidden
+            }
+        }
+    }
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        showAndHideFilters()
     }
 }
