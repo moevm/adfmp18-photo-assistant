@@ -131,7 +131,7 @@ extension CameraController {
             }
         }
     }
-
+    
     func displayPreview(on view: UIView) throws {
         guard let captureSession = self.captureSession, captureSession.isRunning else {
             throw CameraControllerError.captureSessionIsMissing
