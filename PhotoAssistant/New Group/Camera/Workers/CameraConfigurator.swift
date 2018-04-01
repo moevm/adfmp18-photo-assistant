@@ -14,24 +14,23 @@ final class CameraConfigurator: NSObject {
     fileprivate(set) var captureSession: AVCaptureSession?
     
     // cameras
-    fileprivate var frontCamera: AVCaptureDevice?
-    fileprivate var rearCamera: AVCaptureDevice?
+    fileprivate(set) var frontCamera: AVCaptureDevice?
+    fileprivate(set) var rearCamera: AVCaptureDevice?
     
     // device inputs
-    fileprivate(set) var currentCameraPosition: CameraPosition?
-    fileprivate var frontCameraInput: AVCaptureDeviceInput?
-    fileprivate var rearCameraInput: AVCaptureDeviceInput?
+    var currentCameraPosition: CameraPosition?
+    var frontCameraInput: AVCaptureDeviceInput?
+    var rearCameraInput: AVCaptureDeviceInput?
     
     // output
     fileprivate(set) var photoOutput: AVCapturePhotoOutput?
     
     // preview
-    fileprivate var previewLayer: AVCaptureVideoPreviewLayer?
+    fileprivate(set) var previewLayer: AVCaptureVideoPreviewLayer?
     
     // properties
     
     var flashMode = AVCaptureDevice.FlashMode.off
-    fileprivate var photoCaptureCompletionBlock: ((UIImage?, Error?) -> Void)?
 }
 
 extension CameraConfigurator {

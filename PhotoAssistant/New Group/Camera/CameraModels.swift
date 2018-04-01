@@ -64,6 +64,26 @@ enum Camera
             let errorMessage: String?
         }
     }
+    
+    enum SwitchCameras {
+        struct Request {}
+        struct Response {
+            let error: Error?
+        }
+        struct ViewModel {
+            let errorMessage: String?
+        }
+    }
+    
+    enum ToggleFlashLight {
+        struct Request {}
+        struct Response {
+            let state: AVCaptureDevice.FlashMode
+        }
+        struct ViewModel {
+            let image: UIImage
+        }
+    }
 }
 
 enum CameraError: LocalizedError {

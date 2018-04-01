@@ -14,6 +14,9 @@ protocol CameraDisplayLogic: class
     func displayShowPreview(viewModel: Camera.ShowPreview.ViewModel)
     func displayUpdateOrientation(viewModel: Camera.UpdateOrientation.ViewModel)
     func displayCaptureImage(viewModel: Camera.CaptureImage.ViewModel)
+    func displaySwitchCameras(viewModel: Camera.SwitchCameras.ViewModel)
+    func displayToggleFlashlight(viewModel: Camera.ToggleFlashLight.ViewModel)
+    
 }
 
 final class CameraViewController: UIViewController, CameraDisplayLogic
@@ -160,4 +163,29 @@ final class CameraViewController: UIViewController, CameraDisplayLogic
             showAlert(withTitle: "Error", and: errorMessage)
         }
     }
+    
+    // MARK: - Switch Cameras
+    
+    @IBAction func switchCameras(_ sender: UIButton) {
+        let request = Camera.SwitchCameras.Request()
+        interactor?.switchCameras(request: request)
+    }
+    
+    func displaySwitchCameras(viewModel: Camera.SwitchCameras.ViewModel) {
+        if let errorMessage = viewModel.errorMessage {
+            showAlert(withTitle: "Error", and: errorMessage)
+        }
+    }
+    
+    // MARK: - Toggle Flashlight
+    
+    @IBAction func toggleFlashLight(_ sender: UIButton) {
+        let request = Camera.ToggleFlashLight.Request()
+        interactor?.toggleFlashlight(request: request)
+    }
+    
+    func displayToggleFlashlight(viewModel: Camera.ToggleFlashLight.ViewModel) {
+        toggleFlashlightButton.setImage(viewModel.image, for: .normal)
+    }
+    
 }

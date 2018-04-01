@@ -18,6 +18,8 @@
 		72BE51D6206FE4B400D1BB93 /* ShowPreviewWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72BE51D5206FE4B400D1BB93 /* ShowPreviewWorker.swift */; };
 		72BE51D8207111D400D1BB93 /* UpdateOrientationWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72BE51D7207111D400D1BB93 /* UpdateOrientationWorker.swift */; };
 		72BE51DA2071287B00D1BB93 /* CaptureImageWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72BE51D92071287B00D1BB93 /* CaptureImageWorker.swift */; };
+		72BE51DC207139D700D1BB93 /* SwitchCamerasWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72BE51DB207139D700D1BB93 /* SwitchCamerasWorker.swift */; };
+		72BE51DE20713FA100D1BB93 /* ToggleFlashlightWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72BE51DD20713FA100D1BB93 /* ToggleFlashlightWorker.swift */; };
 		B75C710F203ACAD800A97B3D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B75C710E203ACAD800A97B3D /* AppDelegate.swift */; };
 		B75C7111203ACAD800A97B3D /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B75C7110203ACAD800A97B3D /* RootViewController.swift */; };
 		B75C7114203ACAD800A97B3D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B75C7112203ACAD800A97B3D /* Main.storyboard */; };
@@ -42,6 +44,8 @@
 		72BE51D5206FE4B400D1BB93 /* ShowPreviewWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowPreviewWorker.swift; sourceTree = "<group>"; };
 		72BE51D7207111D400D1BB93 /* UpdateOrientationWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateOrientationWorker.swift; sourceTree = "<group>"; };
 		72BE51D92071287B00D1BB93 /* CaptureImageWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaptureImageWorker.swift; sourceTree = "<group>"; };
+		72BE51DB207139D700D1BB93 /* SwitchCamerasWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchCamerasWorker.swift; sourceTree = "<group>"; };
+		72BE51DD20713FA100D1BB93 /* ToggleFlashlightWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToggleFlashlightWorker.swift; sourceTree = "<group>"; };
 		B75C710B203ACAD800A97B3D /* PhotoAssistant.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PhotoAssistant.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B75C710E203ACAD800A97B3D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B75C7110203ACAD800A97B3D /* RootViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
@@ -97,6 +101,8 @@
 				72BE51D5206FE4B400D1BB93 /* ShowPreviewWorker.swift */,
 				72BE51D7207111D400D1BB93 /* UpdateOrientationWorker.swift */,
 				72BE51D92071287B00D1BB93 /* CaptureImageWorker.swift */,
+				72BE51DB207139D700D1BB93 /* SwitchCamerasWorker.swift */,
+				72BE51DD20713FA100D1BB93 /* ToggleFlashlightWorker.swift */,
 			);
 			path = Workers;
 			sourceTree = "<group>";
@@ -297,6 +303,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				72BE51DC207139D700D1BB93 /* SwitchCamerasWorker.swift in Sources */,
+				72BE51DE20713FA100D1BB93 /* ToggleFlashlightWorker.swift in Sources */,
 				B75C7129203C6FAB00A97B3D /* CameraController.swift in Sources */,
 				72BE51C7206FD6C700D1BB93 /* CameraPresenter.swift in Sources */,
 				72BE51CA206FD6C700D1BB93 /* CameraModels.swift in Sources */,

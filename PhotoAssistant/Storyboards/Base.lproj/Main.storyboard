@@ -34,6 +34,9 @@
                                             <constraint firstAttribute="width" secondItem="KNw-9g-BdD" secondAttribute="height" multiplier="1:1" id="Nbb-Sh-BSP"/>
                                         </constraints>
                                         <state key="normal" image="Digitalcamback"/>
+                                        <connections>
+                                            <action selector="switchCameras:" destination="BYZ-38-t0r" eventType="touchUpInside" id="W6V-A2-1g8"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="u7j-fC-Xtd" userLabel="Flashlight Switch Button">
                                         <rect key="frame" x="329.5" y="55.5" width="37.5" height="37.5"/>
@@ -41,6 +44,9 @@
                                             <constraint firstAttribute="width" secondItem="u7j-fC-Xtd" secondAttribute="height" multiplier="1:1" id="KP0-Cu-Nza"/>
                                         </constraints>
                                         <state key="normal" image="Noflash"/>
+                                        <connections>
+                                            <action selector="toggleFlashLight:" destination="BYZ-38-t0r" eventType="touchUpInside" id="w7R-8E-ciz"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" clipsSubviews="YES" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="i1v-1z-Lqu">
                                         <rect key="frame" x="296" y="599" width="60" height="60"/>

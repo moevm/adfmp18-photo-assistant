@@ -14,6 +14,8 @@ protocol CameraPresentationLogic
     func presentShowPreview(response: Camera.ShowPreview.Response)
     func presentUpdateOrientation(response: Camera.UpdateOrientation.Response)
     func presentCaptureImage(response: Camera.CaptureImage.Response)
+    func presentSwitchCameras(response: Camera.SwitchCameras.Response)
+    func presentToggleFlashLight(response: Camera.ToggleFlashLight.Response)
 }
 
 final class CameraPresenter: CameraPresentationLogic
@@ -64,5 +66,29 @@ final class CameraPresenter: CameraPresentationLogic
             viewModel = Camera.CaptureImage.ViewModel(image: nil, errorMessage: errorMessage)
         }
         viewController?.displayCaptureImage(viewModel: viewModel)
+    }
+    
+    // MARK: - Present Switch Cameras
+    
+    func presentSwitchCameras(response: Camera.SwitchCameras.Response) {
+        let viewModel: Camera.SwitchCameras.ViewModel
+        if let error = response.error {
+            viewModel = Camera.SwitchCameras.ViewModel(errorMessage: error.localizedDescription)
+        } else {
+            viewModel = Camera.SwitchCameras.ViewModel(errorMessage: nil)
+        }
+        viewController?.displaySwitchCameras(viewModel: viewModel)
+    }
+    
+    // MARK: - Present Toggle Flashlight
+    
+    func presentToggleFlashLight(response: Camera.ToggleFlashLight.Response) {
+        let viewModel: Camera.ToggleFlashLight.ViewModel
+        if response.state == .on {
+            viewModel = Camera.ToggleFlashLight.ViewModel(image: #imageLiteral(resourceName: "Flashcircled"))
+        } else {
+            viewModel = Camera.ToggleFlashLight.ViewModel(image: #imageLiteral(resourceName: "Noflash"))
+        }
+        viewController?.displayToggleFlashlight(viewModel: viewModel)
     }
 }

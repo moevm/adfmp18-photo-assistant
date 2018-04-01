@@ -14,6 +14,8 @@ protocol CameraBusinessLogic
     func showPreview(request: Camera.ShowPreview.Request)
     func updateOrientation(request: Camera.UpdateOrientation.Request)
     func captureImage(request: Camera.CaptureImage.Request)
+    func switchCameras(request: Camera.SwitchCameras.Request)
+    func toggleFlashlight(request: Camera.ToggleFlashLight.Request)
 }
 
 protocol CameraDataStore
@@ -90,5 +92,28 @@ final class CameraInteractor: CameraBusinessLogic, CameraDataStore
             }
             self?.presenter?.presentCaptureImage(response: response)
         }
+    }
+    
+    // MARK: - Switch Cameras
+    
+    func switchCameras(request: Camera.SwitchCameras.Request) {
+        let switchCamerasWorker = SwitchCamerasWorker(configuration: cameraConfigurator)
+        let response: Camera.SwitchCameras.Response
+        do {
+            try switchCamerasWorker.switchCameras()
+            response = Camera.SwitchCameras.Response(error: nil)
+        } catch let error {
+            response = Camera.SwitchCameras.Response(error: error)
+        }
+        presenter?.presentSwitchCameras(response: response)
+    }
+    
+    // MARK: - Toggle Flashlight
+    
+    func toggleFlashlight(request: Camera.ToggleFlashLight.Request) {
+        let toggleFlashlightWorker = ToggleFlashlightWorker(configuration: cameraConfigurator)
+        let state = toggleFlashlightWorker.toggleFlashLight()
+        let response = Camera.ToggleFlashLight.Response(state: state)
+        presenter?.presentToggleFlashLight(response: response)
     }
 }
