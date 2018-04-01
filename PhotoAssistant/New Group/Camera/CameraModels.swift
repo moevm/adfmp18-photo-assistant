@@ -43,6 +43,16 @@ enum Camera
         }
     }
     
+    enum UpdateOrientation {
+        struct Request {}
+        struct Response {
+            let angle: CGFloat
+        }
+        struct ViewModel {
+            let angle: CGFloat
+        }
+    }
+    
 }
 
 enum CameraError: LocalizedError {

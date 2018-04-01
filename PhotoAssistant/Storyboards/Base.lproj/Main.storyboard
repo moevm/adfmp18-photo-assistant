@@ -114,7 +114,12 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
+                        <outlet property="chooseFilterButton" destination="y55-0X-TjK" id="UCi-qW-LUq"/>
                         <outlet property="previewView" destination="DjV-QM-bpy" id="NQD-tE-dZK"/>
+                        <outlet property="switchCamerasButton" destination="KNw-9g-BdD" id="PeR-3H-qQU"/>
+                        <outlet property="takePhotoButton" destination="Dlb-jH-fmr" id="x5v-7Q-BuT"/>
+                        <outlet property="toggleFlashlightButton" destination="u7j-fC-Xtd" id="nnO-p3-1z5"/>
+                        <outlet property="viewTakenPhotoButton" destination="i1v-1z-Lqu" id="9XL-5q-kO6"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

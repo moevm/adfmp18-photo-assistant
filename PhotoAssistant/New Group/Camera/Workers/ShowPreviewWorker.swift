@@ -18,7 +18,6 @@ final class ShowPreviewWorker {
         let previewLayer = AVCaptureVideoPreviewLayer(session: captureSession)
         previewLayer.videoGravity = AVLayerVideoGravity.resizeAspectFill
         previewLayer.connection?.videoOrientation = .portrait
-       // view.layer.insertSublayer(previewLayer, at: 0)
         previewLayer.frame = size
         return previewLayer
     }

@@ -12,6 +12,7 @@ protocol CameraPresentationLogic
 {
     func presentConfigureCamera(response: Camera.Configure.Response)
     func presentShowPreview(response: Camera.ShowPreview.Response)
+    func presentUpdateOrientation(response: Camera.UpdateOrientation.Response)
 }
 
 final class CameraPresenter: CameraPresentationLogic
@@ -40,5 +41,13 @@ final class CameraPresenter: CameraPresentationLogic
             viewModel = Camera.ShowPreview.ViewModel(errorMessage: nil, previewLayer: response.previewLayer)
         }
         viewController?.displayShowPreview(viewModel: viewModel)
+    }
+    
+    // MARK: - Present Update Orientation
+    
+    func presentUpdateOrientation(response: Camera.UpdateOrientation.Response) {
+        let angle = response.angle
+        let viewModel = Camera.UpdateOrientation.ViewModel(angle: angle)
+        viewController?.displayUpdateOrientation(viewModel: viewModel)
     }
 }

@@ -12,6 +12,7 @@ protocol CameraBusinessLogic
 {
     func configureCamera(request: Camera.Configure.Request)
     func showPreview(request: Camera.ShowPreview.Request)
+    func updateOrientation(request: Camera.UpdateOrientation.Request)
 }
 
 protocol CameraDataStore
@@ -22,11 +23,16 @@ protocol CameraDataStore
 final class CameraInteractor: CameraBusinessLogic, CameraDataStore
 {
     var presenter: CameraPresentationLogic?
-    var worker: CameraWorker?
     
     // MARK: - Properties
     private let cameraConfigurator = CameraConfigurator()
+    private var updateOrientationWorker = UpdateOrientationWorker()
     
+    // MARK: - Object Life Cycle
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
     
     // MARK: - Configure Camera
     
@@ -42,6 +48,8 @@ final class CameraInteractor: CameraBusinessLogic, CameraDataStore
         })
     }
     
+    // MARK: - Show Preview
+    
     func showPreview(request: Camera.ShowPreview.Request) {
         let showPreviewWorker = ShowPreviewWorker()
         let size = request.size
@@ -52,7 +60,19 @@ final class CameraInteractor: CameraBusinessLogic, CameraDataStore
         } catch let error {
             response = Camera.ShowPreview.Response(error: error, previewLayer: nil)
         }
-        
         presenter?.presentShowPreview(response: response)
+    }
+    
+    // MARK: - Update Orientation
+    
+    func updateOrientation(request: Camera.UpdateOrientation.Request) {
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(calculateAngle), name: Notification.Name.UIDeviceOrientationDidChange, object: nil)
+    }
+    
+    @objc private func calculateAngle() {
+        let angle = updateOrientationWorker.angleToRotate
+        let response = Camera.UpdateOrientation.Response(angle: angle)
+        presenter?.presentUpdateOrientation(response: response)
     }
 }

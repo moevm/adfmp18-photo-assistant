@@ -12,6 +12,7 @@ protocol CameraDisplayLogic: class
 {
     func displayConfigureCamera(viewModel: Camera.Configure.ViewModel)
     func displayShowPreview(viewModel: Camera.ShowPreview.ViewModel)
+    func displayUpdateOrientation(viewModel: Camera.UpdateOrientation.ViewModel)
 }
 
 final class CameraViewController: UIViewController, CameraDisplayLogic
@@ -73,6 +74,7 @@ final class CameraViewController: UIViewController, CameraDisplayLogic
     {
         super.viewDidLoad()
         configureCamera()
+        updateOrientaion()
     }
     
     // MARK: - Configure Camera
@@ -108,6 +110,33 @@ final class CameraViewController: UIViewController, CameraDisplayLogic
             showAlert(withTitle: "Error", and: errorMessage)
         } else if let layer = viewModel.previewLayer{
             previewView.layer.insertSublayer(layer, at: 0)
+        }
+    }
+    
+    // MARK: - UpdateOrienation
+    
+    @IBOutlet var switchCamerasButton: UIButton!
+    @IBOutlet var toggleFlashlightButton: UIButton!
+    @IBOutlet var chooseFilterButton: UIButton!
+    @IBOutlet var takePhotoButton: UIButton!
+    @IBOutlet var viewTakenPhotoButton: UIButton!
+    
+    
+    private func updateOrientaion() {
+        let request = Camera.UpdateOrientation.Request()
+        interactor?.updateOrientation(request: request)
+    }
+    
+    // MARK: -
+    
+    func displayUpdateOrientation(viewModel: Camera.UpdateOrientation.ViewModel) {
+        let angle = viewModel.angle
+        UIView.animate(withDuration: 0.3) {
+            self.switchCamerasButton.transform = CGAffineTransform(rotationAngle: angle)
+            self.toggleFlashlightButton.transform = CGAffineTransform(rotationAngle: angle)
+            self.chooseFilterButton.transform = CGAffineTransform(rotationAngle: angle)
+            self.takePhotoButton.transform = CGAffineTransform(rotationAngle: angle)
+            self.viewTakenPhotoButton.transform = CGAffineTransform(rotationAngle: angle)
         }
     }
 }
