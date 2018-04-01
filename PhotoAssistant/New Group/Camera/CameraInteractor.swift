@@ -18,6 +18,7 @@ protocol CameraBusinessLogic
     func toggleFlashlight(request: Camera.ToggleFlashLight.Request)
     func drawFilter(request: Camera.DrawFilter.Request)
     func filterForItem(item: Int, size: CGSize) -> UIImage
+    func keepHorizonLine(request: Camera.KeepHorizonLine.Request)
 }
 
 protocol CameraDataStore
@@ -33,6 +34,7 @@ final class CameraInteractor: CameraBusinessLogic, CameraDataStore
     private let cameraConfigurator = CameraConfigurator()
     private var updateOrientationWorker = UpdateOrientationWorker()
     private lazy var captureImageWorker = CaptureImageWorker(configuration: cameraConfigurator)
+    private let keepHorizonLineWorker = KeepHorizonLineWorker()
     
     // MARK: - Object Life Cycle
     
@@ -131,5 +133,14 @@ final class CameraInteractor: CameraBusinessLogic, CameraDataStore
     func filterForItem(item: Int, size: CGSize) -> UIImage {
         let drawFiltersWorker = DrawFiltersWorker(size: size, item: item)
         return drawFiltersWorker.drawFilter()
+    }
+    
+    // MARK: - Keep Horizon Line
+    
+    func keepHorizonLine(request: Camera.KeepHorizonLine.Request) {
+        keepHorizonLineWorker.keepHorizonLine { [weak self] (rotationAngle) in
+            let response = Camera.KeepHorizonLine.Response(rotation: rotationAngle)
+            self?.presenter?.presentKeepHorizonLine(response: response)
+        }
     }
 }

@@ -28,6 +28,13 @@
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </imageView>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="un9-cE-WEa" customClass="HorizonView" customModule="PhotoAssistant" customModuleProvider="target">
+                                        <rect key="frame" x="-312.5" y="332.5" width="1001" height="1"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="1" id="DZ0-5O-3m7"/>
+                                        </constraints>
+                                    </view>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="y55-0X-TjK" userLabel="Filters Button">
                                         <rect key="frame" x="8" y="599.5" width="60" height="60"/>
                                         <state key="normal" image="Effects"/>
@@ -129,8 +136,10 @@
                                     <constraint firstItem="u7j-fC-Xtd" firstAttribute="width" secondItem="KNw-9g-BdD" secondAttribute="width" id="UqO-hG-fvR"/>
                                     <constraint firstItem="y55-0X-TjK" firstAttribute="leading" secondItem="DjV-QM-bpy" secondAttribute="leadingMargin" id="Y1E-LD-IbD"/>
                                     <constraint firstAttribute="bottom" secondItem="Dlb-jH-fmr" secondAttribute="bottom" id="ZPE-NT-s9u"/>
+                                    <constraint firstItem="un9-cE-WEa" firstAttribute="centerY" secondItem="DjV-QM-bpy" secondAttribute="centerY" id="gdZ-KL-bPB"/>
                                     <constraint firstItem="1pS-Ah-3sp" firstAttribute="centerX" secondItem="DjV-QM-bpy" secondAttribute="centerX" id="ieo-6K-e7M"/>
                                     <constraint firstAttribute="trailing" secondItem="i1v-1z-Lqu" secondAttribute="trailing" constant="19" id="jOF-FW-Z1e"/>
+                                    <constraint firstItem="un9-cE-WEa" firstAttribute="centerX" secondItem="DjV-QM-bpy" secondAttribute="centerX" id="kxE-G5-N0q"/>
                                     <constraint firstItem="Dlb-jH-fmr" firstAttribute="width" secondItem="DjV-QM-bpy" secondAttribute="width" multiplier="1/5" id="mEV-8s-h5n"/>
                                     <constraint firstItem="1pS-Ah-3sp" firstAttribute="height" secondItem="DjV-QM-bpy" secondAttribute="height" multiplier="1/2" id="mLr-2i-4ol"/>
                                     <constraint firstItem="KNw-9g-BdD" firstAttribute="top" secondItem="DjV-QM-bpy" secondAttribute="top" constant="10" id="ng9-dD-lYF"/>
@@ -138,6 +147,7 @@
                                     <constraint firstItem="i1v-1z-Lqu" firstAttribute="width" secondItem="Dlb-jH-fmr" secondAttribute="width" multiplier="0.8" id="q2z-2d-99M"/>
                                     <constraint firstAttribute="bottom" secondItem="pRd-7W-uUh" secondAttribute="bottom" id="s6Q-MH-qVX"/>
                                     <constraint firstAttribute="trailing" secondItem="KNw-9g-BdD" secondAttribute="trailing" constant="8" id="wI4-b2-fSh"/>
+                                    <constraint firstItem="un9-cE-WEa" firstAttribute="width" secondItem="DjV-QM-bpy" secondAttribute="height" multiplier="1.5" id="yZe-5Q-UXU"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -155,6 +165,7 @@
                         <outlet property="chooseFilterButton" destination="y55-0X-TjK" id="UCi-qW-LUq"/>
                         <outlet property="filterView" destination="pRd-7W-uUh" id="mln-zM-Ede"/>
                         <outlet property="filtersCollectionView" destination="1pS-Ah-3sp" id="YWn-4q-cC0"/>
+                        <outlet property="horizonLine" destination="un9-cE-WEa" id="1hP-IE-hDx"/>
                         <outlet property="previewView" destination="DjV-QM-bpy" id="NQD-tE-dZK"/>
                         <outlet property="switchCamerasButton" destination="KNw-9g-BdD" id="PeR-3H-qQU"/>
                         <outlet property="takePhotoButton" destination="Dlb-jH-fmr" id="x5v-7Q-BuT"/>

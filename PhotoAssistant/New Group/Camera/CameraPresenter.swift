@@ -17,6 +17,7 @@ protocol CameraPresentationLogic
     func presentSwitchCameras(response: Camera.SwitchCameras.Response)
     func presentToggleFlashLight(response: Camera.ToggleFlashLight.Response)
     func presentDrawFilter(response: Camera.DrawFilter.Response)
+    func presentKeepHorizonLine(response: Camera.KeepHorizonLine.Response)
 }
 
 final class CameraPresenter: CameraPresentationLogic
@@ -98,5 +99,19 @@ final class CameraPresenter: CameraPresentationLogic
     func presentDrawFilter(response: Camera.DrawFilter.Response) {
         let viewModel = Camera.DrawFilter.ViewModel(image: response.image)
         viewController?.displayDrawFilter(viewModel: viewModel)
+    }
+    
+    // MARK: - Keep Horizon Line
+    
+    func presentKeepHorizonLine(response: Camera.KeepHorizonLine.Response) {
+        let color: UIColor
+        let rotationAngle = response.rotation
+        if ( (abs(abs(rotationAngle) - .pi) < 0.01  && rotationAngle > 3) || (abs((abs(rotationAngle) - .pi / 2)) < 0.01 && rotationAngle < 1.6)) {
+            color = .green
+        } else {
+            color = .red
+        }
+        let viewModel = Camera.KeepHorizonLine.ViewModel(rotationAngle: response.rotation, strokeColor: color)
+        viewController?.displayKeepHorizonLine(viewModel: viewModel)
     }
 }

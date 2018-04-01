@@ -97,6 +97,17 @@ enum Camera
             let image: UIImage
         }
     }
+    
+    enum KeepHorizonLine {
+        struct Request {}
+        struct Response {
+            let rotation: Double
+        }
+        struct ViewModel {
+            let rotationAngle: Double
+            let strokeColor: UIColor
+        }
+    }
 }
 
 enum CameraError: LocalizedError {

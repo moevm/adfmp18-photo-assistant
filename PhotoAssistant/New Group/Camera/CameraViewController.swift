@@ -18,6 +18,7 @@ protocol CameraDisplayLogic: class
     func displaySwitchCameras(viewModel: Camera.SwitchCameras.ViewModel)
     func displayToggleFlashlight(viewModel: Camera.ToggleFlashLight.ViewModel)
     func displayDrawFilter(viewModel: Camera.DrawFilter.ViewModel)
+    func displayKeepHorizonLine(viewModel:Camera.KeepHorizonLine.ViewModel)
 }
 
 final class CameraViewController: UIViewController, CameraDisplayLogic
@@ -80,6 +81,7 @@ final class CameraViewController: UIViewController, CameraDisplayLogic
         super.viewDidLoad()
         configureCamera()
         updateOrientaion()
+        keepHorizonLine()
     }
     
     // MARK: - Configure Camera
@@ -215,6 +217,22 @@ final class CameraViewController: UIViewController, CameraDisplayLogic
     
     func displayDrawFilter(viewModel: Camera.DrawFilter.ViewModel) {
         filterView.image = viewModel.image
+    }
+    
+    // MARK: - Keep Horizon Line
+    
+    @IBOutlet var horizonLine: HorizonView!
+    
+    private func keepHorizonLine() {
+        let request = Camera.KeepHorizonLine.Request()
+        interactor?.keepHorizonLine(request: request)
+    }
+    
+    func displayKeepHorizonLine(viewModel: Camera.KeepHorizonLine.ViewModel) {
+        let rotationAngle = viewModel.rotationAngle
+        horizonLine.transform = CGAffineTransform(rotationAngle: CGFloat(rotationAngle))
+        horizonLine.strokeColor = viewModel.strokeColor
+        horizonLine.setNeedsDisplay()
     }
 }
 
