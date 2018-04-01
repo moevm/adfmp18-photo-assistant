@@ -10,76 +10,104 @@ import UIKit
 
 protocol CameraDisplayLogic: class
 {
-  func displaySomething(viewModel: Camera.Something.ViewModel)
+    func displayConfigureCamera(viewModel: Camera.Configure.ViewModel)
+    func displayShowPreview(viewModel: Camera.ShowPreview.ViewModel)
 }
 
-class CameraViewController: UIViewController, CameraDisplayLogic
+final class CameraViewController: UIViewController, CameraDisplayLogic
 {
-  var interactor: CameraBusinessLogic?
-  var router: (NSObjectProtocol & CameraRoutingLogic & CameraDataPassing)?
-
-  // MARK: Object lifecycle
-  
-  override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?)
-  {
-    super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
-    setup()
-  }
-  
-  required init?(coder aDecoder: NSCoder)
-  {
-    super.init(coder: aDecoder)
-    setup()
-  }
-  
-  // MARK: Setup
-  
-  private func setup()
-  {
-    let viewController = self
-    let interactor = CameraInteractor()
-    let presenter = CameraPresenter()
-    let router = CameraRouter()
-    viewController.interactor = interactor
-    viewController.router = router
-    interactor.presenter = presenter
-    presenter.viewController = viewController
-    router.viewController = viewController
-    router.dataStore = interactor
-  }
-  
-  // MARK: Routing
-  
-  override func prepare(for segue: UIStoryboardSegue, sender: Any?)
-  {
-    if let scene = segue.identifier {
-      let selector = NSSelectorFromString("routeTo\(scene)WithSegue:")
-      if let router = router, router.responds(to: selector) {
-        router.perform(selector, with: segue)
-      }
+    // MARK: - Properties
+    
+    var interactor: CameraBusinessLogic?
+    var router: (NSObjectProtocol & CameraRoutingLogic & CameraDataPassing)?
+    
+    // MARK: -
+    
+    override var prefersStatusBarHidden: Bool { return true }
+    
+    // MARK: Object lifecycle
+    
+    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?)
+    {
+        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
+        setup()
     }
-  }
-  
-  // MARK: View lifecycle
-  
-  override func viewDidLoad()
-  {
-    super.viewDidLoad()
-    doSomething()
-  }
-  
-  // MARK: Do something
-  
-  //@IBOutlet weak var nameTextField: UITextField!
-  
-  func doSomething()
-  {
-    let request = Camera.Something.Request()
-    interactor?.doSomething(request: request)
-  }
-  
-  func displaySomething(viewModel: Camera.Something.ViewModel)
-  {
-    //nameTextField.text = viewModel.name
-  }
+    
+    required init?(coder aDecoder: NSCoder)
+    {
+        super.init(coder: aDecoder)
+        setup()
+    }
+    
+    // MARK: Setup
+    
+    private func setup()
+    {
+        let viewController = self
+        let interactor = CameraInteractor()
+        let presenter = CameraPresenter()
+        let router = CameraRouter()
+        viewController.interactor = interactor
+        viewController.router = router
+        interactor.presenter = presenter
+        presenter.viewController = viewController
+        router.viewController = viewController
+        router.dataStore = interactor
+    }
+    
+    // MARK: Routing
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?)
+    {
+        if let scene = segue.identifier {
+            let selector = NSSelectorFromString("routeTo\(scene)WithSegue:")
+            if let router = router, router.responds(to: selector) {
+                router.perform(selector, with: segue)
+            }
+        }
+    }
+    
+    // MARK: - View lifecycle
+    
+    override func viewDidLoad()
+    {
+        super.viewDidLoad()
+        configureCamera()
+    }
+    
+    // MARK: - Configure Camera
+    
+    private func configureCamera() {
+        let request = Camera.Configure.Request()
+        interactor?.configureCamera(request: request)
+    }
+    
+    // MARK: -
+    
+    func displayConfigureCamera(viewModel: Camera.Configure.ViewModel) {
+        if let errorMessage = viewModel.errorMessage {
+            showAlert(withTitle: "Error", and: errorMessage)
+        } else {
+            showPreview()
+        }
+    }
+    
+    // MARK: - Show Preview
+    
+    @IBOutlet var previewView: UIView!
+    
+    private func showPreview() {
+        let request = Camera.ShowPreview.Request(size: previewView.bounds)
+        interactor?.showPreview(request: request)
+    }
+    
+    // MARK: -
+    
+    func displayShowPreview(viewModel: Camera.ShowPreview.ViewModel) {
+        if let errorMessage = viewModel.errorMessage {
+            showAlert(withTitle: "Error", and: errorMessage)
+        } else if let layer = viewModel.previewLayer{
+            previewView.layer.insertSublayer(layer, at: 0)
+        }
+    }
 }

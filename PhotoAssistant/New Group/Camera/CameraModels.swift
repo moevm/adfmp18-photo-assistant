@@ -7,21 +7,61 @@
 //
 
 import UIKit
+import AVFoundation
 
 enum Camera
 {
-  // MARK: Use cases
-  
-  enum Something
-  {
-    struct Request
+    // MARK: Use cases
+    
+    enum Configure
     {
+        struct Request {}
+        
+        struct Response
+        {
+            let error: Error?
+        }
+        struct ViewModel
+        {
+            let errorMessage: String?
+        }
     }
-    struct Response
-    {
+    
+    enum ShowPreview {
+        struct Request {
+            let size: CGRect
+        }
+        
+        struct Response {
+            let error: Error?
+            let previewLayer: AVCaptureVideoPreviewLayer?
+        }
+        
+        struct ViewModel {
+            let errorMessage: String?
+            let previewLayer: AVCaptureVideoPreviewLayer?
+        }
     }
-    struct ViewModel
-    {
+    
+}
+
+enum CameraError: LocalizedError {
+    case captureSessionIsMissing
+    case inputsAreInvalid
+    case invalidOperation
+    case noCamerasAvailable
+    
+    var errorDescription: String? {
+        switch self {
+        case .captureSessionIsMissing: return "Capture Session Is Missing"
+        case .inputsAreInvalid: return "Inputs Are Invalid"
+        case .invalidOperation: return "Invalid Operation"
+        case .noCamerasAvailable: return "No cameras available"
+        }
     }
-  }
+}
+
+enum CameraPosition {
+    case front
+    case rear
 }

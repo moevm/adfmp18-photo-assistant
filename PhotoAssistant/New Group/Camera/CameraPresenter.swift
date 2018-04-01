@@ -10,18 +10,35 @@ import UIKit
 
 protocol CameraPresentationLogic
 {
-  func presentSomething(response: Camera.Something.Response)
+    func presentConfigureCamera(response: Camera.Configure.Response)
+    func presentShowPreview(response: Camera.ShowPreview.Response)
 }
 
-class CameraPresenter: CameraPresentationLogic
+final class CameraPresenter: CameraPresentationLogic
 {
-  weak var viewController: CameraDisplayLogic?
-  
-  // MARK: Do something
-  
-  func presentSomething(response: Camera.Something.Response)
-  {
-    let viewModel = Camera.Something.ViewModel()
-    viewController?.displaySomething(viewModel: viewModel)
-  }
+    weak var viewController: CameraDisplayLogic?
+    
+    // MARK: - Present Configure Camera
+    func presentConfigureCamera(response: Camera.Configure.Response) {
+        let viewModel: Camera.Configure.ViewModel
+        let error = response.error
+        if let error = error {
+            viewModel = Camera.Configure.ViewModel(errorMessage: error.localizedDescription)
+        } else {
+            viewModel = Camera.Configure.ViewModel(errorMessage: nil)
+        }
+        viewController?.displayConfigureCamera(viewModel: viewModel)
+    }
+    
+    // MARK: - Present Show Preview
+    
+    func presentShowPreview(response: Camera.ShowPreview.Response) {
+        let viewModel: Camera.ShowPreview.ViewModel
+        if let error = response.error {
+            viewModel = Camera.ShowPreview.ViewModel(errorMessage: error.localizedDescription, previewLayer: response.previewLayer)
+        } else {
+            viewModel = Camera.ShowPreview.ViewModel(errorMessage: nil, previewLayer: response.previewLayer)
+        }
+        viewController?.displayShowPreview(viewModel: viewModel)
+    }
 }

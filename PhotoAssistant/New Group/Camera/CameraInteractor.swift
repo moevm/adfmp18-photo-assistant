@@ -10,28 +10,49 @@ import UIKit
 
 protocol CameraBusinessLogic
 {
-  func doSomething(request: Camera.Something.Request)
+    func configureCamera(request: Camera.Configure.Request)
+    func showPreview(request: Camera.ShowPreview.Request)
 }
 
 protocol CameraDataStore
 {
-  //var name: String { get set }
+    //var name: String { get set }
 }
 
-class CameraInteractor: CameraBusinessLogic, CameraDataStore
+final class CameraInteractor: CameraBusinessLogic, CameraDataStore
 {
-  var presenter: CameraPresentationLogic?
-  var worker: CameraWorker?
-  //var name: String = ""
-  
-  // MARK: Do something
-  
-  func doSomething(request: Camera.Something.Request)
-  {
-    worker = CameraWorker()
-    worker?.doSomeWork()
+    var presenter: CameraPresentationLogic?
+    var worker: CameraWorker?
     
-    let response = Camera.Something.Response()
-    presenter?.presentSomething(response: response)
-  }
+    // MARK: - Properties
+    private let cameraConfigurator = CameraConfigurator()
+    
+    
+    // MARK: - Configure Camera
+    
+    func configureCamera(request: Camera.Configure.Request) {
+        cameraConfigurator.prepare(completionHandler: { (error) in
+            var response: Camera.Configure.Response
+            if let error = error {
+                response = Camera.Configure.Response(error: error)
+            } else {
+                response = Camera.Configure.Response(error: nil)
+            }
+            self.presenter?.presentConfigureCamera(response: response)
+        })
+    }
+    
+    func showPreview(request: Camera.ShowPreview.Request) {
+        let showPreviewWorker = ShowPreviewWorker()
+        let size = request.size
+        let response: Camera.ShowPreview.Response
+        do {
+            let previewLayer = try showPreviewWorker.showPreview(ofSize: size, configurator: cameraConfigurator)
+            response = Camera.ShowPreview.Response(error: nil, previewLayer: previewLayer)
+        } catch let error {
+            response = Camera.ShowPreview.Response(error: error, previewLayer: nil)
+        }
+        
+        presenter?.presentShowPreview(response: response)
+    }
 }
