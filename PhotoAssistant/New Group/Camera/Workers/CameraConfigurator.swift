@@ -23,7 +23,7 @@ final class CameraConfigurator: NSObject {
     fileprivate var rearCameraInput: AVCaptureDeviceInput?
     
     // output
-    fileprivate var photoOutput: AVCapturePhotoOutput?
+    fileprivate(set) var photoOutput: AVCapturePhotoOutput?
     
     // preview
     fileprivate var previewLayer: AVCaptureVideoPreviewLayer?

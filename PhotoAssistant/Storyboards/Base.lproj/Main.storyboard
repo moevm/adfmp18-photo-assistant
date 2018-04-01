@@ -55,6 +55,9 @@
                                             <constraint firstAttribute="width" secondItem="Dlb-jH-fmr" secondAttribute="height" multiplier="1:1" id="Sxl-92-ihG"/>
                                         </constraints>
                                         <state key="normal" image="Roundcam"/>
+                                        <connections>
+                                            <action selector="captureImage:" destination="BYZ-38-t0r" eventType="touchUpInside" id="SA6-fR-op8"/>
+                                        </connections>
                                     </button>
                                     <collectionView hidden="YES" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="1pS-Ah-3sp" customClass="FiltersCollectionVIew" customModule="PhotoAssistant" customModuleProvider="target">
                                         <rect key="frame" x="21" y="167" width="333.5" height="333.5"/>

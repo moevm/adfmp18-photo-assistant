@@ -13,6 +13,7 @@ protocol CameraBusinessLogic
     func configureCamera(request: Camera.Configure.Request)
     func showPreview(request: Camera.ShowPreview.Request)
     func updateOrientation(request: Camera.UpdateOrientation.Request)
+    func captureImage(request: Camera.CaptureImage.Request)
 }
 
 protocol CameraDataStore
@@ -27,6 +28,7 @@ final class CameraInteractor: CameraBusinessLogic, CameraDataStore
     // MARK: - Properties
     private let cameraConfigurator = CameraConfigurator()
     private var updateOrientationWorker = UpdateOrientationWorker()
+    private lazy var captureImageWorker = CaptureImageWorker(configuration: cameraConfigurator)
     
     // MARK: - Object Life Cycle
     
@@ -74,5 +76,19 @@ final class CameraInteractor: CameraBusinessLogic, CameraDataStore
         let angle = updateOrientationWorker.angleToRotate
         let response = Camera.UpdateOrientation.Response(angle: angle)
         presenter?.presentUpdateOrientation(response: response)
+    }
+    
+    // MARK: - Capture Image
+    
+    func captureImage(request: Camera.CaptureImage.Request) {
+        captureImageWorker.captureImage { [weak self] (data, error) in
+            let response: Camera.CaptureImage.Response
+            if let data = data {
+                response = Camera.CaptureImage.Response(imageData: data, error: nil)
+            } else {
+                response = Camera.CaptureImage.Response(imageData: nil, error: error!)
+            }
+            self?.presenter?.presentCaptureImage(response: response)
+        }
     }
 }

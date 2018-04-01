@@ -13,6 +13,7 @@ protocol CameraPresentationLogic
     func presentConfigureCamera(response: Camera.Configure.Response)
     func presentShowPreview(response: Camera.ShowPreview.Response)
     func presentUpdateOrientation(response: Camera.UpdateOrientation.Response)
+    func presentCaptureImage(response: Camera.CaptureImage.Response)
 }
 
 final class CameraPresenter: CameraPresentationLogic
@@ -49,5 +50,19 @@ final class CameraPresenter: CameraPresentationLogic
         let angle = response.angle
         let viewModel = Camera.UpdateOrientation.ViewModel(angle: angle)
         viewController?.displayUpdateOrientation(viewModel: viewModel)
+    }
+    
+    // MARK: - Present Capture Image
+    
+    func presentCaptureImage(response: Camera.CaptureImage.Response) {
+        let viewModel: Camera.CaptureImage.ViewModel
+        if let imageData = response.imageData {
+            let image = UIImage(data: imageData)
+            viewModel = Camera.CaptureImage.ViewModel(image: image, errorMessage: nil)
+        } else {
+            let errorMessage = response.error?.localizedDescription
+            viewModel = Camera.CaptureImage.ViewModel(image: nil, errorMessage: errorMessage)
+        }
+        viewController?.displayCaptureImage(viewModel: viewModel)
     }
 }

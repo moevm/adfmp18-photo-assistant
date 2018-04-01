@@ -13,6 +13,7 @@ protocol CameraDisplayLogic: class
     func displayConfigureCamera(viewModel: Camera.Configure.ViewModel)
     func displayShowPreview(viewModel: Camera.ShowPreview.ViewModel)
     func displayUpdateOrientation(viewModel: Camera.UpdateOrientation.ViewModel)
+    func displayCaptureImage(viewModel: Camera.CaptureImage.ViewModel)
 }
 
 final class CameraViewController: UIViewController, CameraDisplayLogic
@@ -119,7 +120,11 @@ final class CameraViewController: UIViewController, CameraDisplayLogic
     @IBOutlet var toggleFlashlightButton: UIButton!
     @IBOutlet var chooseFilterButton: UIButton!
     @IBOutlet var takePhotoButton: UIButton!
-    @IBOutlet var viewTakenPhotoButton: UIButton!
+    @IBOutlet var viewTakenPhotoButton: UIButton! {
+        didSet {
+            viewTakenPhotoButton.layer.cornerRadius = viewTakenPhotoButton.bounds.height / 2
+        }
+    }
     
     
     private func updateOrientaion() {
@@ -137,6 +142,22 @@ final class CameraViewController: UIViewController, CameraDisplayLogic
             self.chooseFilterButton.transform = CGAffineTransform(rotationAngle: angle)
             self.takePhotoButton.transform = CGAffineTransform(rotationAngle: angle)
             self.viewTakenPhotoButton.transform = CGAffineTransform(rotationAngle: angle)
+        }
+    }
+    
+    // MARK: - Capture Image
+    
+    @IBAction func captureImage(_ sender: UIButton) {
+        let request = Camera.CaptureImage.Request()
+        interactor?.captureImage(request: request)
+    }
+    
+    
+    func displayCaptureImage(viewModel: Camera.CaptureImage.ViewModel) {
+        if let image = viewModel.image {
+            viewTakenPhotoButton.setImage(image, for: .normal)
+        } else if let errorMessage = viewModel.errorMessage {
+            showAlert(withTitle: "Error", and: errorMessage)
         }
     }
 }

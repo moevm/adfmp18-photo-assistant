@@ -53,6 +53,17 @@ enum Camera
         }
     }
     
+    enum CaptureImage {
+        struct Request {}
+        struct Response {
+            let imageData: Data?
+            let error: Error?
+        }
+        struct ViewModel {
+            let image: UIImage?
+            let errorMessage: String?
+        }
+    }
 }
 
 enum CameraError: LocalizedError {
@@ -60,6 +71,7 @@ enum CameraError: LocalizedError {
     case inputsAreInvalid
     case invalidOperation
     case noCamerasAvailable
+    case unknown
     
     var errorDescription: String? {
         switch self {
@@ -67,6 +79,7 @@ enum CameraError: LocalizedError {
         case .inputsAreInvalid: return "Inputs Are Invalid"
         case .invalidOperation: return "Invalid Operation"
         case .noCamerasAvailable: return "No cameras available"
+        case .unknown: return "Unknown error occured"
         }
     }
 }

@@ -34,7 +34,6 @@ final class RootController: UIViewController {
     @IBOutlet weak var switchFlashlightButton: UIButton!
     @IBOutlet weak var capturePreviewView: UIView!
     @IBOutlet weak var chooseFilterButton: UIButton!
-    
     @IBOutlet weak var takePhotoButton: UIButton!
     
     // MARK: - Actions
