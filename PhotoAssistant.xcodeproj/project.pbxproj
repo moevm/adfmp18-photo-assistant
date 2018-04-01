@@ -20,6 +20,7 @@
 		72BE51DA2071287B00D1BB93 /* CaptureImageWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72BE51D92071287B00D1BB93 /* CaptureImageWorker.swift */; };
 		72BE51DC207139D700D1BB93 /* SwitchCamerasWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72BE51DB207139D700D1BB93 /* SwitchCamerasWorker.swift */; };
 		72BE51DE20713FA100D1BB93 /* ToggleFlashlightWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72BE51DD20713FA100D1BB93 /* ToggleFlashlightWorker.swift */; };
+		72BE51E020714B9E00D1BB93 /* DrawFiltersWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72BE51DF20714B9E00D1BB93 /* DrawFiltersWorker.swift */; };
 		B75C710F203ACAD800A97B3D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B75C710E203ACAD800A97B3D /* AppDelegate.swift */; };
 		B75C7111203ACAD800A97B3D /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B75C7110203ACAD800A97B3D /* RootViewController.swift */; };
 		B75C7114203ACAD800A97B3D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B75C7112203ACAD800A97B3D /* Main.storyboard */; };
@@ -46,6 +47,7 @@
 		72BE51D92071287B00D1BB93 /* CaptureImageWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaptureImageWorker.swift; sourceTree = "<group>"; };
 		72BE51DB207139D700D1BB93 /* SwitchCamerasWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchCamerasWorker.swift; sourceTree = "<group>"; };
 		72BE51DD20713FA100D1BB93 /* ToggleFlashlightWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToggleFlashlightWorker.swift; sourceTree = "<group>"; };
+		72BE51DF20714B9E00D1BB93 /* DrawFiltersWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawFiltersWorker.swift; sourceTree = "<group>"; };
 		B75C710B203ACAD800A97B3D /* PhotoAssistant.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PhotoAssistant.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B75C710E203ACAD800A97B3D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B75C7110203ACAD800A97B3D /* RootViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
@@ -103,6 +105,7 @@
 				72BE51D92071287B00D1BB93 /* CaptureImageWorker.swift */,
 				72BE51DB207139D700D1BB93 /* SwitchCamerasWorker.swift */,
 				72BE51DD20713FA100D1BB93 /* ToggleFlashlightWorker.swift */,
+				72BE51DF20714B9E00D1BB93 /* DrawFiltersWorker.swift */,
 			);
 			path = Workers;
 			sourceTree = "<group>";
@@ -309,6 +312,7 @@
 				72BE51C7206FD6C700D1BB93 /* CameraPresenter.swift in Sources */,
 				72BE51CA206FD6C700D1BB93 /* CameraModels.swift in Sources */,
 				B7E30460205D654D00555B73 /* FilterCell.swift in Sources */,
+				72BE51E020714B9E00D1BB93 /* DrawFiltersWorker.swift in Sources */,
 				72BE51C9206FD6C700D1BB93 /* CameraRouter.swift in Sources */,
 				72BE51CB206FD6C700D1BB93 /* CameraViewController.swift in Sources */,
 				B7E30463205D6A3F00555B73 /* HashView.swift in Sources */,

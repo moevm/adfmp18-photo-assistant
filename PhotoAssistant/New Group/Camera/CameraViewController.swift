@@ -7,6 +7,7 @@
 //
 
 import UIKit
+private let reuseIdentifier = "FilterCell"
 
 protocol CameraDisplayLogic: class
 {
@@ -16,7 +17,7 @@ protocol CameraDisplayLogic: class
     func displayCaptureImage(viewModel: Camera.CaptureImage.ViewModel)
     func displaySwitchCameras(viewModel: Camera.SwitchCameras.ViewModel)
     func displayToggleFlashlight(viewModel: Camera.ToggleFlashLight.ViewModel)
-    
+    func displayDrawFilter(viewModel: Camera.DrawFilter.ViewModel)
 }
 
 final class CameraViewController: UIViewController, CameraDisplayLogic
@@ -188,4 +189,68 @@ final class CameraViewController: UIViewController, CameraDisplayLogic
         toggleFlashlightButton.setImage(viewModel.image, for: .normal)
     }
     
+    // MARK: - Collection View
+    
+    @IBOutlet var filtersCollectionView: FiltersCollectionVIew!
+    
+    @IBAction func showAndHideFilters(_ sender: UIButton) {
+        showAndHideFilters()
+    }
+    
+    private func showAndHideFilters() {
+        UIView.animate(withDuration: 0.2) { [weak self] in
+            if let weakSelf = self {
+                weakSelf.filtersCollectionView.isHidden = !weakSelf.filtersCollectionView.isHidden
+            }
+        }
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        filtersCollectionView.isHidden = true
+    }
+    
+    // MARK: - Draw Filter
+    
+    @IBOutlet var filterView: UIImageView!
+    
+    func displayDrawFilter(viewModel: Camera.DrawFilter.ViewModel) {
+        filterView.image = viewModel.image
+    }
+}
+
+extension CameraViewController: UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as? FilterCell else {
+            fatalError("Cannot deque a filter cell")
+        }
+        cell.layer.cornerRadius = 10
+        cell.layer.borderColor = UIColor.yellow.cgColor
+        cell.layer.borderWidth = 1
+        cell.filterImageView.image = interactor?.filterForItem(item: indexPath.item, size: cell.bounds.size)
+        return cell
+    }
+    
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return 1
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return 1
+    }
+}
+
+extension CameraViewController: UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let size = collectionView.bounds.size.width / 4
+        return CGSize(width: size, height: size)
+    }
+}
+
+extension CameraViewController: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        showAndHideFilters()
+        let item = indexPath.item
+        let request = Camera.DrawFilter.Request(item: item, size: collectionView.bounds.size)
+        interactor?.drawFilter(request: request)
+    }
 }

@@ -16,6 +16,7 @@ protocol CameraPresentationLogic
     func presentCaptureImage(response: Camera.CaptureImage.Response)
     func presentSwitchCameras(response: Camera.SwitchCameras.Response)
     func presentToggleFlashLight(response: Camera.ToggleFlashLight.Response)
+    func presentDrawFilter(response: Camera.DrawFilter.Response)
 }
 
 final class CameraPresenter: CameraPresentationLogic
@@ -90,5 +91,12 @@ final class CameraPresenter: CameraPresentationLogic
             viewModel = Camera.ToggleFlashLight.ViewModel(image: #imageLiteral(resourceName: "Noflash"))
         }
         viewController?.displayToggleFlashlight(viewModel: viewModel)
+    }
+    
+    // MARK: - Present Draw Filter
+    
+    func presentDrawFilter(response: Camera.DrawFilter.Response) {
+        let viewModel = Camera.DrawFilter.ViewModel(image: response.image)
+        viewController?.displayDrawFilter(viewModel: viewModel)
     }
 }

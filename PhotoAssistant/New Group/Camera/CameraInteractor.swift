@@ -16,11 +16,13 @@ protocol CameraBusinessLogic
     func captureImage(request: Camera.CaptureImage.Request)
     func switchCameras(request: Camera.SwitchCameras.Request)
     func toggleFlashlight(request: Camera.ToggleFlashLight.Request)
+    func drawFilter(request: Camera.DrawFilter.Request)
+    func filterForItem(item: Int, size: CGSize) -> UIImage
 }
 
 protocol CameraDataStore
 {
-    //var name: String { get set }
+    
 }
 
 final class CameraInteractor: CameraBusinessLogic, CameraDataStore
@@ -115,5 +117,19 @@ final class CameraInteractor: CameraBusinessLogic, CameraDataStore
         let state = toggleFlashlightWorker.toggleFlashLight()
         let response = Camera.ToggleFlashLight.Response(state: state)
         presenter?.presentToggleFlashLight(response: response)
+    }
+    
+    // MARK: - Draw Filters
+    
+    func drawFilter(request: Camera.DrawFilter.Request) {
+        let drawFiltersWorker = DrawFiltersWorker(size: request.size, item: request.item)
+        let image = drawFiltersWorker.drawFilter()
+        let response = Camera.DrawFilter.Response(image: image)
+        presenter?.presentDrawFilter(response: response)
+    }
+    
+    func filterForItem(item: Int, size: CGSize) -> UIImage {
+        let drawFiltersWorker = DrawFiltersWorker(size: size, item: item)
+        return drawFiltersWorker.drawFilter()
     }
 }

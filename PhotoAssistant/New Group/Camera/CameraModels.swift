@@ -84,6 +84,19 @@ enum Camera
             let image: UIImage
         }
     }
+    
+    enum DrawFilter {
+        struct Request {
+            let item: Int
+            let size: CGSize
+        }
+        struct Response {
+            let image: UIImage
+        }
+        struct ViewModel {
+            let image: UIImage
+        }
+    }
 }
 
 enum CameraError: LocalizedError {

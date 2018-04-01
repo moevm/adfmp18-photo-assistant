@@ -24,9 +24,16 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DjV-QM-bpy" userLabel="Capture Preview View">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <subviews>
+                                    <imageView clearsContextBeforeDrawing="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="pRd-7W-uUh">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </imageView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="y55-0X-TjK" userLabel="Filters Button">
                                         <rect key="frame" x="8" y="599.5" width="60" height="60"/>
                                         <state key="normal" image="Effects"/>
+                                        <connections>
+                                            <action selector="showAndHideFilters:" destination="BYZ-38-t0r" eventType="touchUpInside" id="tN4-Pg-uTt"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KNw-9g-BdD" userLabel="Camera Switch Button">
                                         <rect key="frame" x="329.5" y="10" width="37.5" height="37.5"/>
@@ -78,26 +85,47 @@
                                             <inset key="sectionInset" minX="20" minY="20" maxX="20" maxY="20"/>
                                         </collectionViewFlowLayout>
                                         <cells>
-                                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="FilterCell" id="Cpj-T4-fmb">
+                                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="FilterCell" id="Cpj-T4-fmb" customClass="FilterCell" customModule="PhotoAssistant" customModuleProvider="target">
                                                 <rect key="frame" x="20" y="20" width="100" height="100"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
                                                     <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
                                                     <autoresizingMask key="autoresizingMask"/>
+                                                    <subviews>
+                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="hax-YV-NAv">
+                                                            <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
+                                                        </imageView>
+                                                    </subviews>
                                                 </view>
                                                 <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="bottom" secondItem="hax-YV-NAv" secondAttribute="bottom" id="7lt-Ct-zYq"/>
+                                                    <constraint firstAttribute="trailing" secondItem="hax-YV-NAv" secondAttribute="trailing" id="Hms-7F-xal"/>
+                                                    <constraint firstItem="hax-YV-NAv" firstAttribute="top" secondItem="Cpj-T4-fmb" secondAttribute="top" id="WA1-9H-ejt"/>
+                                                    <constraint firstItem="hax-YV-NAv" firstAttribute="leading" secondItem="Cpj-T4-fmb" secondAttribute="leading" id="mbZ-dH-9vb"/>
+                                                </constraints>
+                                                <connections>
+                                                    <outlet property="filterImageView" destination="hax-YV-NAv" id="3Ev-Wu-MHE"/>
+                                                </connections>
                                             </collectionViewCell>
                                         </cells>
+                                        <connections>
+                                            <outlet property="dataSource" destination="BYZ-38-t0r" id="tWY-aa-USl"/>
+                                            <outlet property="delegate" destination="BYZ-38-t0r" id="012-Nm-fvb"/>
+                                        </connections>
                                     </collectionView>
                                 </subviews>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstItem="Dlb-jH-fmr" firstAttribute="centerY" secondItem="y55-0X-TjK" secondAttribute="centerY" id="11Q-Yh-Ek4"/>
+                                    <constraint firstAttribute="trailing" secondItem="pRd-7W-uUh" secondAttribute="trailing" id="4RE-tq-h9C"/>
                                     <constraint firstItem="Dlb-jH-fmr" firstAttribute="centerX" secondItem="DjV-QM-bpy" secondAttribute="centerX" id="4g3-V3-iyA"/>
                                     <constraint firstItem="KNw-9g-BdD" firstAttribute="width" secondItem="DjV-QM-bpy" secondAttribute="width" multiplier="0.1" id="4iO-PJ-xv6"/>
                                     <constraint firstItem="u7j-fC-Xtd" firstAttribute="centerX" secondItem="KNw-9g-BdD" secondAttribute="centerX" id="6Gn-eb-xea"/>
                                     <constraint firstItem="i1v-1z-Lqu" firstAttribute="centerY" secondItem="Dlb-jH-fmr" secondAttribute="centerY" id="7T2-V8-qHK"/>
                                     <constraint firstItem="1pS-Ah-3sp" firstAttribute="centerY" secondItem="DjV-QM-bpy" secondAttribute="centerY" id="Cwd-xo-yM8"/>
+                                    <constraint firstItem="pRd-7W-uUh" firstAttribute="leading" secondItem="DjV-QM-bpy" secondAttribute="leading" id="Fdb-g1-qhu"/>
+                                    <constraint firstItem="pRd-7W-uUh" firstAttribute="top" secondItem="DjV-QM-bpy" secondAttribute="top" id="NIA-bo-fbZ"/>
                                     <constraint firstItem="u7j-fC-Xtd" firstAttribute="width" secondItem="KNw-9g-BdD" secondAttribute="width" id="UqO-hG-fvR"/>
                                     <constraint firstItem="y55-0X-TjK" firstAttribute="leading" secondItem="DjV-QM-bpy" secondAttribute="leadingMargin" id="Y1E-LD-IbD"/>
                                     <constraint firstAttribute="bottom" secondItem="Dlb-jH-fmr" secondAttribute="bottom" id="ZPE-NT-s9u"/>
@@ -108,6 +136,7 @@
                                     <constraint firstItem="KNw-9g-BdD" firstAttribute="top" secondItem="DjV-QM-bpy" secondAttribute="top" constant="10" id="ng9-dD-lYF"/>
                                     <constraint firstItem="u7j-fC-Xtd" firstAttribute="top" secondItem="KNw-9g-BdD" secondAttribute="bottom" constant="8" id="njt-bg-KVn"/>
                                     <constraint firstItem="i1v-1z-Lqu" firstAttribute="width" secondItem="Dlb-jH-fmr" secondAttribute="width" multiplier="0.8" id="q2z-2d-99M"/>
+                                    <constraint firstAttribute="bottom" secondItem="pRd-7W-uUh" secondAttribute="bottom" id="s6Q-MH-qVX"/>
                                     <constraint firstAttribute="trailing" secondItem="KNw-9g-BdD" secondAttribute="trailing" constant="8" id="wI4-b2-fSh"/>
                                 </constraints>
                             </view>
@@ -124,6 +153,8 @@
                     </view>
                     <connections>
                         <outlet property="chooseFilterButton" destination="y55-0X-TjK" id="UCi-qW-LUq"/>
+                        <outlet property="filterView" destination="pRd-7W-uUh" id="mln-zM-Ede"/>
+                        <outlet property="filtersCollectionView" destination="1pS-Ah-3sp" id="YWn-4q-cC0"/>
                         <outlet property="previewView" destination="DjV-QM-bpy" id="NQD-tE-dZK"/>
                         <outlet property="switchCamerasButton" destination="KNw-9g-BdD" id="PeR-3H-qQU"/>
                         <outlet property="takePhotoButton" destination="Dlb-jH-fmr" id="x5v-7Q-BuT"/>
