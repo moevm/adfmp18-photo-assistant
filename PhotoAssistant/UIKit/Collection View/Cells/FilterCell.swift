@@ -10,8 +10,5 @@ import UIKit
 
 final class FilterCell: UICollectionViewCell {
     
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        
-    }
+    @IBOutlet var filterImageView: UIImageView!
 }

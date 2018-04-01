@@ -17,6 +17,5 @@ final class FiltersCollectionVIew: UICollectionView {
         let blurEffect = UIBlurEffect(style: .dark)
         let blurredEffectView = UIVisualEffectView(effect: blurEffect)
         backgroundView = blurredEffectView
-//        addSubview(blurredEffectView)
     }
 }
