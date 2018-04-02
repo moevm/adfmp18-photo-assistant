@@ -10,9 +10,6 @@ import UIKit
 
 protocol CameraBusinessLogic
 {
-<<<<<<< HEAD
-  func doSomething(request: Camera.Something.Request)
-=======
     func configureCamera(request: Camera.Configure.Request)
     func showPreview(request: Camera.ShowPreview.Request)
     func updateOrientation(request: Camera.UpdateOrientation.Request)
@@ -22,33 +19,6 @@ protocol CameraBusinessLogic
     func drawFilter(request: Camera.DrawFilter.Request)
     func filterForItem(item: Int, size: CGSize) -> UIImage
     func keepHorizonLine(request: Camera.KeepHorizonLine.Request)
->>>>>>> ed59035af94e92bf8f7d0ca67f357645fed574b9
-}
-
-protocol CameraDataStore
-{
-<<<<<<< HEAD
-  //var name: String { get set }
-}
-
-class CameraInteractor: CameraBusinessLogic, CameraDataStore
-{
-  var presenter: CameraPresentationLogic?
-  var worker: CameraWorker?
-  //var name: String = ""
-  
-  // MARK: Do something
-  
-  func doSomething(request: Camera.Something.Request)
-  {
-    worker = CameraWorker()
-    worker?.doSomeWork()
-    
-    let response = Camera.Something.Response()
-    presenter?.presentSomething(response: response)
-  }
-=======
-    
 }
 
 final class CameraInteractor: CameraBusinessLogic, CameraDataStore
@@ -168,5 +138,4 @@ final class CameraInteractor: CameraBusinessLogic, CameraDataStore
             self?.presenter?.presentKeepHorizonLine(response: response)
         }
     }
->>>>>>> ed59035af94e92bf8f7d0ca67f357645fed574b9
 }

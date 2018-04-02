@@ -10,22 +10,6 @@ import UIKit
 
 protocol CameraPresentationLogic
 {
-<<<<<<< HEAD
-  func presentSomething(response: Camera.Something.Response)
-}
-
-class CameraPresenter: CameraPresentationLogic
-{
-  weak var viewController: CameraDisplayLogic?
-  
-  // MARK: Do something
-  
-  func presentSomething(response: Camera.Something.Response)
-  {
-    let viewModel = Camera.Something.ViewModel()
-    viewController?.displaySomething(viewModel: viewModel)
-  }
-=======
     func presentConfigureCamera(response: Camera.Configure.Response)
     func presentShowPreview(response: Camera.ShowPreview.Response)
     func presentUpdateOrientation(response: Camera.UpdateOrientation.Response)
@@ -34,6 +18,10 @@ class CameraPresenter: CameraPresentationLogic
     func presentToggleFlashLight(response: Camera.ToggleFlashLight.Response)
     func presentDrawFilter(response: Camera.DrawFilter.Response)
     func presentKeepHorizonLine(response: Camera.KeepHorizonLine.Response)
+}
+
+protocol CameraDataStore {
+    
 }
 
 final class CameraPresenter: CameraPresentationLogic
@@ -130,5 +118,4 @@ final class CameraPresenter: CameraPresentationLogic
         let viewModel = Camera.KeepHorizonLine.ViewModel(rotationAngle: response.rotation, strokeColor: color)
         viewController?.displayKeepHorizonLine(viewModel: viewModel)
     }
->>>>>>> ed59035af94e92bf8f7d0ca67f357645fed574b9
 }

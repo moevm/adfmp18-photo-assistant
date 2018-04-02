@@ -7,25 +7,6 @@
 //
 
 import UIKit
-<<<<<<< HEAD
-
-enum Camera
-{
-  // MARK: Use cases
-  
-  enum Something
-  {
-    struct Request
-    {
-    }
-    struct Response
-    {
-    }
-    struct ViewModel
-    {
-    }
-  }
-=======
 import AVFoundation
 
 enum Camera
@@ -150,5 +131,4 @@ enum CameraError: LocalizedError {
 enum CameraPosition {
     case front
     case rear
->>>>>>> ed59035af94e92bf8f7d0ca67f357645fed574b9
 }
