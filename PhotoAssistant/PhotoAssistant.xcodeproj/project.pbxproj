@@ -7,6 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		720A3C482074173A00696729 /* PhotoPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 720A3C422074173A00696729 /* PhotoPresenter.swift */; };
+		720A3C492074173A00696729 /* PhotoWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 720A3C432074173A00696729 /* PhotoWorker.swift */; };
+		720A3C4A2074173A00696729 /* PhotoRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 720A3C442074173A00696729 /* PhotoRouter.swift */; };
+		720A3C4B2074173A00696729 /* PhotoModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 720A3C452074173A00696729 /* PhotoModels.swift */; };
+		720A3C4C2074173A00696729 /* PhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 720A3C462074173A00696729 /* PhotoViewController.swift */; };
+		720A3C4D2074173A00696729 /* PhotoInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 720A3C472074173A00696729 /* PhotoInteractor.swift */; };
+		729FCFA42073FE4C00D009D9 /* GridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 729FCFA32073FE4C00D009D9 /* GridView.swift */; };
 		72E82D722071AB190016ABD7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 72E82D4E2071AB180016ABD7 /* Assets.xcassets */; };
 		72E82D732071AB190016ABD7 /* FilterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72E82D522071AB180016ABD7 /* FilterCell.swift */; };
 		72E82D742071AB190016ABD7 /* HashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72E82D542071AB180016ABD7 /* HashView.swift */; };
@@ -33,6 +40,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		720A3C422074173A00696729 /* PhotoPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoPresenter.swift; sourceTree = "<group>"; };
+		720A3C432074173A00696729 /* PhotoWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoWorker.swift; sourceTree = "<group>"; };
+		720A3C442074173A00696729 /* PhotoRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoRouter.swift; sourceTree = "<group>"; };
+		720A3C452074173A00696729 /* PhotoModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoModels.swift; sourceTree = "<group>"; };
+		720A3C462074173A00696729 /* PhotoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoViewController.swift; sourceTree = "<group>"; };
+		720A3C472074173A00696729 /* PhotoInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoInteractor.swift; sourceTree = "<group>"; };
+		729FCFA32073FE4C00D009D9 /* GridView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridView.swift; sourceTree = "<group>"; };
 		72E82D382071AAE80016ABD7 /* PhotoAssistant.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PhotoAssistant.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		72E82D472071AAE80016ABD7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		72E82D4E2071AB180016ABD7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -71,6 +85,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		720A3C412074172700696729 /* Photo */ = {
+			isa = PBXGroup;
+			children = (
+				720A3C422074173A00696729 /* PhotoPresenter.swift */,
+				720A3C432074173A00696729 /* PhotoWorker.swift */,
+				720A3C442074173A00696729 /* PhotoRouter.swift */,
+				720A3C452074173A00696729 /* PhotoModels.swift */,
+				720A3C462074173A00696729 /* PhotoViewController.swift */,
+				720A3C472074173A00696729 /* PhotoInteractor.swift */,
+			);
+			path = Photo;
+			sourceTree = "<group>";
+		};
 		72E82D2F2071AAE80016ABD7 = {
 			isa = PBXGroup;
 			children = (
@@ -154,6 +181,7 @@
 		72E82D582071AB180016ABD7 /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
+				720A3C412074172700696729 /* Photo */,
 				72E82D592071AB180016ABD7 /* Camera */,
 			);
 			path = Scenes;
@@ -193,6 +221,7 @@
 			isa = PBXGroup;
 			children = (
 				72E82D6A2071AB180016ABD7 /* HorizonView.swift */,
+				729FCFA32073FE4C00D009D9 /* GridView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -289,6 +318,7 @@
 				72E82D762071AB190016ABD7 /* AppDelegate.swift in Sources */,
 				72E82D7C2071AB190016ABD7 /* CameraConfigurator.swift in Sources */,
 				72E82D772071AB190016ABD7 /* CameraModels.swift in Sources */,
+				720A3C482074173A00696729 /* PhotoPresenter.swift in Sources */,
 				72E82D842071AB190016ABD7 /* CameraPresenter.swift in Sources */,
 				72E82D822071AB190016ABD7 /* DrawFiltersWorker.swift in Sources */,
 				72E82D752071AB190016ABD7 /* FiltersCollectionVIew.swift in Sources */,
@@ -296,9 +326,13 @@
 				72E82D852071AB190016ABD7 /* HorizonView.swift in Sources */,
 				72E82D742071AB190016ABD7 /* HashView.swift in Sources */,
 				72E82D792071AB190016ABD7 /* CameraWorker.swift in Sources */,
+				729FCFA42073FE4C00D009D9 /* GridView.swift in Sources */,
 				72E82D812071AB190016ABD7 /* ShowPreviewWorker.swift in Sources */,
 				72E82D7F2071AB190016ABD7 /* CaptureImageWorker.swift in Sources */,
 				72E82D7D2071AB190016ABD7 /* SwitchCamerasWorker.swift in Sources */,
+				720A3C4B2074173A00696729 /* PhotoModels.swift in Sources */,
+				720A3C4D2074173A00696729 /* PhotoInteractor.swift in Sources */,
+				720A3C492074173A00696729 /* PhotoWorker.swift in Sources */,
 				72E82D732071AB190016ABD7 /* FilterCell.swift in Sources */,
 				72E82D862071AB190016ABD7 /* UIViewController.swift in Sources */,
 				72E82D782071AB190016ABD7 /* CameraInteractor.swift in Sources */,
@@ -306,6 +340,8 @@
 				72E82D7E2071AB190016ABD7 /* ToggleFlashlightWorker.swift in Sources */,
 				72E82D7A2071AB190016ABD7 /* CameraRouter.swift in Sources */,
 				72E82D7B2071AB190016ABD7 /* CameraViewController.swift in Sources */,
+				720A3C4A2074173A00696729 /* PhotoRouter.swift in Sources */,
+				720A3C4C2074173A00696729 /* PhotoViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

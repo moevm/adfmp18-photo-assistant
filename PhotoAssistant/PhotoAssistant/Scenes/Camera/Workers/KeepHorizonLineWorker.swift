@@ -31,4 +31,8 @@ final class KeepHorizonLineWorker {
             })
         }
     }
+    
+    func stop() {
+        manager.stopDeviceMotionUpdates()
+    }
 }

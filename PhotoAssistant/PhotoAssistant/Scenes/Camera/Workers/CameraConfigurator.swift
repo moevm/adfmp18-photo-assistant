@@ -42,7 +42,7 @@ extension CameraConfigurator {
         
         func configureCaptureDevices() throws {
             let session = AVCaptureDevice.DiscoverySession(deviceTypes: [.builtInWideAngleCamera], mediaType: AVMediaType.video, position: .unspecified)
-            let cameras = session.devices.flatMap {$0}
+            let cameras = session.devices.compactMap {$0}
             guard !cameras.isEmpty else {
                 throw CameraError.noCamerasAvailable
             }

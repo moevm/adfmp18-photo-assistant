@@ -68,6 +68,7 @@ final class CameraViewController: UIViewController, CameraDisplayLogic
     override func prepare(for segue: UIStoryboardSegue, sender: Any?)
     {
         if let scene = segue.identifier {
+            print(scene)
             let selector = NSSelectorFromString("routeTo\(scene)WithSegue:")
             if let router = router, router.responds(to: selector) {
                 router.perform(selector, with: segue)
@@ -106,6 +107,8 @@ final class CameraViewController: UIViewController, CameraDisplayLogic
     
     @IBOutlet var previewView: UIView!
     
+    private var previewLayer: CALayer!
+    
     private func showPreview() {
         let request = Camera.ShowPreview.Request(size: previewView.bounds)
         interactor?.showPreview(request: request)
@@ -118,6 +121,7 @@ final class CameraViewController: UIViewController, CameraDisplayLogic
             showAlert(withTitle: "Error", and: errorMessage)
         } else if let layer = viewModel.previewLayer{
             previewView.layer.insertSublayer(layer, at: 0)
+            previewLayer = layer
         }
     }
     
@@ -215,6 +219,8 @@ final class CameraViewController: UIViewController, CameraDisplayLogic
     // MARK: - Draw Filter
     
     @IBOutlet var filterView: UIImageView!
+    @IBOutlet var topFilterViewConstraint: NSLayoutConstraint!
+    @IBOutlet var bottomFilterViewConstraint: NSLayoutConstraint!
     
     func displayDrawFilter(viewModel: Camera.DrawFilter.ViewModel) {
         filterView.image = viewModel.image
@@ -245,7 +251,8 @@ extension CameraViewController: UICollectionViewDataSource {
         cell.layer.cornerRadius = 10
         cell.layer.borderColor = UIColor.yellow.cgColor
         cell.layer.borderWidth = 1
-        cell.filterImageView.image = interactor?.filterForItem(item: indexPath.item, size: cell.bounds.size)
+        let width: CGFloat = indexPath.item == 2 ? cell.bounds.size.height / ((1 + sqrt(5)) / 2) : cell.bounds.size.width
+        cell.filterImageView.image = interactor?.filterForItem(item: indexPath.item, size: CGSize(width: width, height: cell.bounds.size.height))
         return cell
     }
     
@@ -254,7 +261,7 @@ extension CameraViewController: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 1
+        return 4
     }
 }
 
@@ -269,7 +276,35 @@ extension CameraViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         showAndHideFilters()
         let item = indexPath.item
-        let request = Camera.DrawFilter.Request(item: item, size: collectionView.bounds.size)
+        let unnacesseryHight = (view.bounds.size.height - (view.bounds.size.width * ((1 + sqrt(5))/2))) / 2
+        if item == 2 {
+            
+            bottomFilterViewConstraint.constant = -unnacesseryHight
+            topFilterViewConstraint.constant = unnacesseryHight
+            UIView.animate(withDuration: 0.3, animations: {
+                self.view.layoutIfNeeded()
+            })
+            UIView.animate(withDuration: 0.3, animations: {
+                self.view.layoutIfNeeded()
+            }) { (_) in
+                self.previewLayer.position = CGPoint(x: self.previewView.bounds.midX, y: self.previewView.bounds.midY)
+                self.previewLayer.bounds = self.previewView.bounds
+            }
+            
+        } else if item != 4 {
+            bottomFilterViewConstraint.constant = 0
+            topFilterViewConstraint.constant = 0
+            UIView.animate(withDuration: 0.1, animations: {
+                self.view.layoutIfNeeded()
+            })
+            let caAnimation = CABasicAnimation(keyPath: "bounds")
+            self.previewLayer.position = CGPoint(x: self.previewView.bounds.midX, y: self.previewView.bounds.midY)
+            
+            self.previewLayer.bounds = self.previewView.bounds
+        } else {
+            
+        }
+        let request = Camera.DrawFilter.Request(item: item, size: filterView.bounds.size)
         interactor?.drawFilter(request: request)
     }
 }

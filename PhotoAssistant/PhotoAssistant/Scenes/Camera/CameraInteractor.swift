@@ -21,6 +21,10 @@ protocol CameraBusinessLogic
     func keepHorizonLine(request: Camera.KeepHorizonLine.Request)
 }
 
+protocol CameraDataStore {
+    var imageData: Data { get set }
+}
+
 final class CameraInteractor: CameraBusinessLogic, CameraDataStore
 {
     var presenter: CameraPresentationLogic?
@@ -30,6 +34,7 @@ final class CameraInteractor: CameraBusinessLogic, CameraDataStore
     private var updateOrientationWorker = UpdateOrientationWorker()
     private lazy var captureImageWorker = CaptureImageWorker(configuration: cameraConfigurator)
     private let keepHorizonLineWorker = KeepHorizonLineWorker()
+    var imageData = Data()
     
     // MARK: - Object Life Cycle
     
@@ -85,6 +90,7 @@ final class CameraInteractor: CameraBusinessLogic, CameraDataStore
         captureImageWorker.captureImage { [weak self] (data, error) in
             let response: Camera.CaptureImage.Response
             if let data = data {
+                self?.imageData = data
                 response = Camera.CaptureImage.Response(imageData: data, error: nil)
             } else {
                 response = Camera.CaptureImage.Response(imageData: nil, error: error!)

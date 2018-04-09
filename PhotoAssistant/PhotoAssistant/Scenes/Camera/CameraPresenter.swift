@@ -20,10 +20,6 @@ protocol CameraPresentationLogic
     func presentKeepHorizonLine(response: Camera.KeepHorizonLine.Response)
 }
 
-protocol CameraDataStore {
-    
-}
-
 final class CameraPresenter: CameraPresentationLogic
 {
     weak var viewController: CameraDisplayLogic?
