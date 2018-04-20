@@ -261,7 +261,7 @@ extension CameraViewController: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 4
+        return 3
     }
 }
 
@@ -297,7 +297,6 @@ extension CameraViewController: UICollectionViewDelegate {
             UIView.animate(withDuration: 0.1, animations: {
                 self.view.layoutIfNeeded()
             })
-            let caAnimation = CABasicAnimation(keyPath: "bounds")
             self.previewLayer.position = CGPoint(x: self.previewView.bounds.midX, y: self.previewView.bounds.midY)
             
             self.previewLayer.bounds = self.previewView.bounds
